@@ -71,3 +71,4 @@
                 link.style.display = text.includes(query) ? 'flex' : 'none';
             });
         });
+
