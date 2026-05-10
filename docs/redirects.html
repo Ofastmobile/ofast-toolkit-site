@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofast Toolkit — Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+
+    <!-- =============================================
+         HEADER
+    ============================================= -->
+    <header class="site-header">
+        <a href="./index.html" class="header-logo">
+            <div class="header-logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            Ofast <span>Toolkit</span>
+        </a>
+
+        <div class="header-divider"></div>
+        <span class="header-badge">Docs</span>
+
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="./index.html" class="active">Documentation</a>
+            <a href="https://ofastshop.com" target="_blank">ofastshop.com</a>
+            <a href="#" class="header-cta">Download Plugin</a>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- =============================================
+         DOCS LAYOUT
+    ============================================= -->
+    <div class="docs-layout">
+
+        <!-- =============================================
+             LEFT SIDEBAR
+        ============================================= -->
+        <aside class="docs-sidebar" id="docsSidebar">
+
+            <div class="sidebar-search">
+                <div class="sidebar-search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" placeholder="Search docs..." id="sidebarSearch">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./index.html" class="sidebar-link">
+                    
+                    Overview
+                </a>
+                <a href="./getting-started.html" class="sidebar-link">
+                    
+                    Getting Started
+                </a>
+                <a href="./dashboard.html" class="sidebar-link">
+                    
+                    Dashboard
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./email.html" class="sidebar-link">
+                    
+                    Email Module
+                    
+                </a>
+                <a href="./smtp.html" class="sidebar-link">
+                    
+                    SMTP Configuration
+                    
+                </a>
+                <a href="./sms.html" class="sidebar-link">
+                    
+                    SMS Channel
+                    
+                </a>
+                <a href="./contact-forms.html" class="sidebar-link">
+                    
+                    Contact Forms
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./spam-protection.html" class="sidebar-link">
+                    
+                    Spam Protection
+                    
+                </a>
+                <a href="./social-login.html" class="sidebar-link">
+                    
+                    Social Login
+                    
+                </a>
+                <a href="./debug-indicator.html" class="sidebar-link">
+                    
+                    Debug Indicator
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./admin-studio.html" class="sidebar-link">
+                    
+                    Admin Studio
+                    
+                </a>
+                <a href="./login-redesign.html" class="sidebar-link">
+                    
+                    Login Redesign
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./code-snippets.html" class="sidebar-link">
+                    
+                    Code Snippets
+                    
+                </a>
+                <a href="./redirects.html" class="sidebar-link active">
+                    
+                    Redirects Manager
+                    
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- =============================================
+             MAIN CONTENT
+        ============================================= -->
+        <main class="docs-content">
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb"><a href="./index.html">Docs</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg><a href="#">Utility</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg><span>Redirects Manager</span></nav>
+
+            <!-- Module header -->
+            
+
+            <!-- Content body -->
+            <div class="module-header"><div class="module-tag">Utility</div><h1 class="module-title">Redirects Manager</h1><p class="module-description">Learn how to configure and use the Redirects Manager.</p></div>
+<div class="content-body">
+<h2 id="overview">Overview</h2><p>This is the Redirects Manager. It provides essential functionality for your WordPress site. Please configure it according to your needs.</p><h2 id="requirements">Requirements</h2><ul><li>WordPress 5.8 or higher</li><li>PHP 7.4 or higher</li><li>Ofast Toolkit plugin activated</li><li>Module toggled <strong>ON</strong> in the dashboard</li></ul><h2 id="setup">Setup</h2><div class="steps"><div class="step"><div class="step-number">1</div><div class="step-content"><h4>Enable the module</h4><p>Go to <strong>Ofast Toolkit → Dashboard</strong> and toggle to <strong>ON</strong>.</p></div></div><div class="step"><div class="step-number">2</div><div class="step-content"><h4>Configure Settings</h4><p>Go to the module settings page to adjust configuration.</p></div></div></div><h2 id="settings">Settings</h2><table class="settings-table"><thead><tr><th>Setting</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><span class="setting-name">Enable Feature</span></td><td>Turns the main functionality on or off.</td><td>Disabled</td></tr></tbody></table><h2 id="how-it-works">How it works</h2><p>The module hooks into core WordPress functions to provide seamless integration without modifying core files.</p><h2 id="faq">FAQ</h2><div class="faq-item"><div class="faq-question">Is this module free?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></div><div class="faq-answer"><p>Check the module tags above to see if it is part of the Free or Pro version.</p></div></div>
+</div>
+
+<!-- Prev / Next -->
+            <nav class="docs-pagination"><a href="./code-snippets.html"><span class="pagination-label">← Previous</span><span class="pagination-title">Code Snippets</span></a><a href="./contact-forms.html"><span class="pagination-label">Next →</span><span class="pagination-title">Contact Forms</span></a></nav>
+
+        </main>
+
+        <!-- =============================================
+             RIGHT TOC
+        ============================================= -->
+        <aside class="docs-toc">
+            <div class="toc-title">On this page</div>
+            <ul class="toc-list">
+                <li><a href="#overview" class="toc-link active">Overview</a></li>
+                <li><a href="#requirements" class="toc-link">Requirements</a></li>
+                <li><a href="#setup" class="toc-link">Setup</a></li>
+                <li><a href="#settings" class="toc-link">Settings</a></li>
+                <li><a href="#how-it-works" class="toc-link">How it works</a></li>
+                <li><a href="#placeholders" class="toc-link sub">Placeholders</a></li>
+                <li><a href="#faq" class="toc-link">FAQ</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18,15 12,9 6,15"/>
+        </svg>
+    </button>
+
+    <!-- =============================================
+         JAVASCRIPT
+    ============================================= -->
+    <script src="../assets/js/docs.js"></script>
+
+</body>
+</html>

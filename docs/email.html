@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofast Toolkit — Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+
+    <!-- =============================================
+         HEADER
+    ============================================= -->
+    <header class="site-header">
+        <a href="./index.html" class="header-logo">
+            <div class="header-logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            Ofast <span>Toolkit</span>
+        </a>
+
+        <div class="header-divider"></div>
+        <span class="header-badge">Docs</span>
+
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="./index.html" class="active">Documentation</a>
+            <a href="https://ofastshop.com" target="_blank">ofastshop.com</a>
+            <a href="#" class="header-cta">Download Plugin</a>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- =============================================
+         DOCS LAYOUT
+    ============================================= -->
+    <div class="docs-layout">
+
+        <!-- =============================================
+             LEFT SIDEBAR
+        ============================================= -->
+        <aside class="docs-sidebar" id="docsSidebar">
+
+            <div class="sidebar-search">
+                <div class="sidebar-search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" placeholder="Search docs..." id="sidebarSearch">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./index.html" class="sidebar-link">
+                    
+                    Overview
+                </a>
+                <a href="./getting-started.html" class="sidebar-link">
+                    
+                    Getting Started
+                </a>
+                <a href="./dashboard.html" class="sidebar-link">
+                    
+                    Dashboard
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./email.html" class="sidebar-link active">
+                    
+                    Email Module
+                    
+                </a>
+                <a href="./smtp.html" class="sidebar-link">
+                    
+                    SMTP Configuration
+                    
+                </a>
+                <a href="./sms.html" class="sidebar-link">
+                    
+                    SMS Channel
+                    
+                </a>
+                <a href="./contact-forms.html" class="sidebar-link">
+                    
+                    Contact Forms
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./spam-protection.html" class="sidebar-link">
+                    
+                    Spam Protection
+                    
+                </a>
+                <a href="./social-login.html" class="sidebar-link">
+                    
+                    Social Login
+                    
+                </a>
+                <a href="./debug-indicator.html" class="sidebar-link">
+                    
+                    Debug Indicator
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./admin-studio.html" class="sidebar-link">
+                    
+                    Admin Studio
+                    
+                </a>
+                <a href="./login-redesign.html" class="sidebar-link">
+                    
+                    Login Redesign
+                    
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                
+                <a href="./code-snippets.html" class="sidebar-link">
+                    
+                    Code Snippets
+                    
+                </a>
+                <a href="./redirects.html" class="sidebar-link">
+                    
+                    Redirects Manager
+                    
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- =============================================
+             MAIN CONTENT
+        ============================================= -->
+        <main class="docs-content">
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb"><a href="./index.html">Docs</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg><a href="#">Communication</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg><span>Email Module</span></nav>
+
+            <!-- Module header -->
+            
+
+            <!-- Content body -->
+            <div class="module-header"><div class="module-tag">Communication</div><h1 class="module-title">Email Module</h1><p class="module-description">Learn how to configure and use the Email Module.</p></div>
+<div class="content-body">
+<h2 id="overview">Overview</h2>
+                <p>
+                    The Email Module is your built-in email marketing tool. Instead of installing a separate plugin, you can send targeted emails directly from your WordPress admin — by user role, specific user IDs, or your entire user base.
+                </p>
+                <p>
+                    Every email is wrapped in your branded template automatically, with support for personalization placeholders so each recipient gets a message that feels written for them.
+                </p>
+
+                <div class="callout callout-info">
+                    <span class="callout-icon">💡</span>
+                    <div>This module works best when combined with the <strong>SMTP Configuration</strong> module. SMTP ensures your emails actually reach inboxes instead of going to spam.</div>
+                </div>
+
+                <h2 id="requirements">Requirements</h2>
+                <ul>
+                    <li>WordPress 5.8 or higher</li>
+                    <li>PHP 7.4 or higher</li>
+                    <li>Ofast Toolkit plugin activated</li>
+                    <li>Email module toggled <strong>ON</strong> in the dashboard</li>
+                </ul>
+
+                <h2 id="setup">Setup</h2>
+                <p>Follow these steps to get the Email module working on your site:</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Enable the module</h4>
+                            <p>Go to <strong>Ofast Toolkit → Dashboard</strong> and toggle the Email Module to <strong>ON</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Go to Emailer</h4>
+                            <p>Navigate to <strong>Ofast Toolkit → Emailer</strong> in your WordPress admin menu.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Set up your email template</h4>
+                            <p>Click the <strong>Templates</strong> tab. Add your logo, brand colors, company name, and social links.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Send a test email</h4>
+                            <p>Go to the <strong>Send Email</strong> tab, compose a message, check <strong>"Send to me as test only"</strong>, and hit Send.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="settings">Settings</h2>
+                <p>All email template settings are managed under the <strong>Templates</strong> tab.</p>
+
+                <table class="settings-table">
+                    <thead>
+                        <tr>
+                            <th>Setting</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="setting-name">Template Style</span></td>
+                            <td>Visual style of the email wrapper. Choose Modern, Classic, Minimal, or Custom HTML.</td>
+                            <td>Modern</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Primary Color</span></td>
+                            <td>Header background and button color.</td>
+                            <td>#6366f1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Company Name</span></td>
+                            <td>Shown in the email header and footer.</td>
+                            <td>Your site name</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Logo URL</span></td>
+                            <td>Upload or paste your logo URL. Shown in email header.</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">From Name</span></td>
+                            <td>The sender name recipients will see in their inbox.</td>
+                            <td>Your site name</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Reply-To</span></td>
+                            <td>Email address replies will be sent to.</td>
+                            <td>Admin email</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Apply Template To</span></td>
+                            <td>Choose which emails use the template: Ofast Emailer, WordPress notifications, WooCommerce emails, or all.</td>
+                            <td>Emailer only</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="how-it-works">How it works</h2>
+                <p>When you send an email through the Emailer, here is what happens behind the scenes:</p>
+                <ul>
+                    <li>You select recipients by role, user ID range, or manual selection from the user table.</li>
+                    <li>The plugin fetches the matching users from your WordPress database.</li>
+                    <li>Placeholders like <code>&#123;&#123;user_first_name&#125;&#125;</code> are replaced with each user's real data.</li>
+                    <li>The message is wrapped in your branded email template.</li>
+                    <li>Emails are sent using <code>wp_mail()</code> — which routes through SMTP if configured.</li>
+                    <li>A log entry is recorded in Email History with subject, recipient count, and status.</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <span class="callout-icon">⚠️</span>
+                    <div>Sending to more than <strong>500 users at once</strong> on shared hosting may cause timeouts. For large lists, use a dedicated SMTP provider like SendGrid or Mailgun which have built-in delivery queues.</div>
+                </div>
+
+                <h3 id="placeholders">Available Placeholders</h3>
+                <p>Use these in your subject line or message body to personalize each email:</p>
+
+                <div class="code-block">
+                    <span class="code-lang">Placeholders</span>
+                    <pre>&#123;&#123;user_id&#125;&#125;             → User's WordPress ID
+&#123;&#123;username&#125;&#125;           → Login username
+&#123;&#123;user_display_name&#125;&#125;  → Display name
+&#123;&#123;user_first_name&#125;&#125;    → First name
+&#123;&#123;user_last_name&#125;&#125;     → Last name
+&#123;&#123;user_email&#125;&#125;         → Email address</pre>
+                </div>
+
+                <h2 id="faq">FAQ</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        My emails are going to spam. What should I do?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Set up the SMTP Configuration module with a dedicated email provider (SendGrid, Mailgun, Zoho). Also check your domain's SPF, DKIM, and DMARC records using the DNS checker inside the SMTP module.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I schedule emails to send later?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. In the Send Email tab, set a date and time in the Schedule field before sending. The email will be queued and sent at that time via WordPress cron.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I preview an email before sending?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the <strong>Preview Email</strong> button in the Send Email tab. A modal will open showing exactly how the email will look in desktop and mobile view.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Where can I see emails I have already sent?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Go to <strong>Emailer → History</strong>. Each entry shows the subject, date sent, number of recipients, status, and a preview of the email body.</p>
+                    </div>
+                </div>
+
+            </div>
+</div>
+
+<!-- Prev / Next -->
+            <nav class="docs-pagination"><a href="./dashboard.html"><span class="pagination-label">← Previous</span><span class="pagination-title">Dashboard</span></a><a href="./smtp.html"><span class="pagination-label">Next →</span><span class="pagination-title">SMTP Configuration</span></a></nav>
+
+        </main>
+
+        <!-- =============================================
+             RIGHT TOC
+        ============================================= -->
+        <aside class="docs-toc">
+            <div class="toc-title">On this page</div>
+            <ul class="toc-list">
+                <li><a href="#overview" class="toc-link active">Overview</a></li>
+                <li><a href="#requirements" class="toc-link">Requirements</a></li>
+                <li><a href="#setup" class="toc-link">Setup</a></li>
+                <li><a href="#settings" class="toc-link">Settings</a></li>
+                <li><a href="#how-it-works" class="toc-link">How it works</a></li>
+                <li><a href="#placeholders" class="toc-link sub">Placeholders</a></li>
+                <li><a href="#faq" class="toc-link">FAQ</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18,15 12,9 6,15"/>
+        </svg>
+    </button>
+
+    <!-- =============================================
+         JAVASCRIPT
+    ============================================= -->
+    <script src="../assets/js/docs.js"></script>
+
+</body>
+</html>
