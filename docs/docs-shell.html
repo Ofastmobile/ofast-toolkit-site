@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofast Toolkit — Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           CSS VARIABLES
+        ============================================= */
+        :root {
+            --primary:        #6366f1;
+            --primary-dark:   #4f46e5;
+            --primary-light:  #eef2ff;
+            --gold:           #ffcc00;
+            --gold-dark:      #e6b800;
+            --bg:             #f8fafc;
+            --surface:        #ffffff;
+            --border:         #e2e8f0;
+            --border-light:   #f1f5f9;
+            --text:           #1e293b;
+            --text-muted:     #64748b;
+            --text-light:     #94a3b8;
+            --sidebar-width:  270px;
+            --toc-width:      220px;
+            --header-height:  62px;
+            --radius:         8px;
+            --shadow-sm:      0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow:         0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+            --transition:     all 0.2s ease;
+            --font:           'Plus Jakarta Sans', sans-serif;
+            --font-mono:      'Fira Code', monospace;
+        }
+
+        /* =============================================
+           RESET & BASE
+        ============================================= */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--primary); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--primary-dark); }
+
+        img { max-width: 100%; display: block; }
+
+        /* =============================================
+           HEADER
+        ============================================= */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--header-height);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            gap: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text);
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .header-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        .header-logo span {
+            color: var(--primary);
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+
+        .header-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .header-nav a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .header-nav a:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .header-nav a.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .header-cta {
+            background: var(--gold);
+            color: #1a1a1a !important;
+            font-weight: 600 !important;
+            padding: 7px 16px !important;
+            border-radius: 6px !important;
+        }
+
+        .header-cta:hover {
+            background: var(--gold-dark) !important;
+            color: #1a1a1a !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* =============================================
+           DOCS LAYOUT
+        ============================================= */
+        .docs-layout {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr var(--toc-width);
+            min-height: 100vh;
+            padding-top: var(--header-height);
+        }
+
+        /* =============================================
+           LEFT SIDEBAR
+        ============================================= */
+        .docs-sidebar {
+            position: sticky;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 24px 0;
+            flex-shrink: 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .docs-sidebar::-webkit-scrollbar { width: 4px; }
+        .docs-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .docs-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+        .sidebar-search {
+            padding: 0 16px 16px;
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            padding: 8px 12px 8px 34px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: var(--font);
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .sidebar-search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+
+        .sidebar-search-wrap {
+            position: relative;
+        }
+
+        .sidebar-search-wrap svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            color: var(--text-light);
+        }
+
+        .sidebar-section {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-section-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            padding: 8px 20px 4px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 20px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+            line-height: 1.4;
+        }
+
+        .sidebar-link:hover {
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .sidebar-link.active {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-left-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-link-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-badge {
+            margin-left: auto;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 20px;
+        }
+
+        .badge-enabled {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-disabled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-core {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* =============================================
+           MAIN CONTENT
+        ============================================= */
+        .docs-content {
+            min-width: 0;
+            padding: 48px 56px;
+            max-width: 100%;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+        }
+
+        .breadcrumb a:hover { color: var(--primary); }
+
+        .breadcrumb svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .breadcrumb span:last-child {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Module header */
+        .module-header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .module-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        .module-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .module-description {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 640px;
+        }
+
+        .module-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .module-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .module-meta-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-light);
+        }
+
+        /* Content typography */
+        .content-body h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 40px 0 16px;
+            letter-spacing: -0.3px;
+            scroll-margin-top: calc(var(--header-height) + 24px);
+        }
+
+        .content-body h2:first-child { margin-top: 0; }
+
+        .content-body h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 28px 0 12px;
+            scroll-margin-top: calc(var(--header-height) + 24px);
+        }
+
+        .content-body p {
+            color: #374151;
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+
+        .content-body ul, .content-body ol {
+            margin: 0 0 16px 20px;
+            color: #374151;
+        }
+
+        .content-body li {
+            margin-bottom: 6px;
+            line-height: 1.7;
+        }
+
+        /* Callout boxes */
+        .callout {
+            display: flex;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            margin: 24px 0;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .callout-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .callout-info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+        }
+
+        .callout-warning {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            color: #92400e;
+        }
+
+        .callout-success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .callout-danger {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        /* Steps */
+        .steps {
+            margin: 24px 0;
+            counter-reset: step-counter;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            counter-increment: step-counter;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Settings table */
+        .settings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .settings-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: var(--bg);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .settings-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .settings-table tr:last-child td { border-bottom: none; }
+
+        .settings-table tr:hover td { background: var(--bg); }
+
+        .setting-name {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #1e293b;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .code-lang {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-family: var(--font);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--primary);
+        }
+
+        /* Screenshot placeholder */
+        .screenshot {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .screenshot-caption {
+            font-size: 12px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .faq-question:hover { background: var(--bg); }
+
+        .faq-chevron {
+            width: 16px;
+            height: 16px;
+            color: var(--text-light);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.2s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 16px;
+        }
+
+        .faq-answer p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Prev/Next nav */
+        .docs-pagination {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .docs-pagination a {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            flex: 1;
+            transition: var(--transition);
+        }
+
+        .docs-pagination a:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .pagination-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-light);
+        }
+
+        .pagination-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .docs-pagination a:last-child {
+            text-align: right;
+        }
+
+        /* =============================================
+           RIGHT TOC
+        ============================================= */
+        .docs-toc {
+            position: sticky;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 40px 24px 40px 16px;
+            border-left: 1px solid var(--border);
+            background: var(--surface);
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .docs-toc::-webkit-scrollbar { width: 4px; }
+        .docs-toc::-webkit-scrollbar-track { background: transparent; }
+        .docs-toc::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+        .toc-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li { margin-bottom: 2px; }
+
+        .toc-link {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border-left: 2px solid transparent;
+            transition: var(--transition);
+            line-height: 1.4;
+        }
+
+        .toc-link:hover {
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .toc-link.active {
+            color: var(--primary);
+            border-left-color: var(--primary);
+            background: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .toc-link.sub {
+            padding-left: 20px;
+            font-size: 12.5px;
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 1280px) {
+            .docs-layout {
+                grid-template-columns: var(--sidebar-width) 1fr;
+            }
+            .docs-toc { display: none; }
+        }
+
+        @media (max-width: 900px) {
+            .docs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .docs-sidebar {
+                position: fixed;
+                left: -100%;
+                top: var(--header-height);
+                height: calc(100vh - var(--header-height));
+                width: var(--sidebar-width);
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .docs-sidebar.open {
+                left: 0;
+            }
+
+            .docs-content {
+                padding: 32px 24px;
+            }
+
+            .mobile-menu-btn { display: flex; }
+
+            .header-nav { display: none; }
+
+            .module-title { font-size: 26px; }
+
+            .docs-pagination { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .docs-content { padding: 24px 16px; }
+            .module-title { font-size: 22px; }
+            .settings-table { font-size: 13px; }
+        }
+
+        /* =============================================
+           SIDEBAR OVERLAY (mobile)
+        ============================================= */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 998;
+            top: var(--header-height);
+        }
+
+        .sidebar-overlay.visible { display: block; }
+
+        /* =============================================
+           SCROLL TO TOP
+        ============================================= */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 500;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           PAGE LOAD ANIMATION
+        ============================================= */
+        .docs-content {
+            animation: fadeInUp 0.4s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =============================================
+           UTILITY
+        ============================================= */
+        .text-muted { color: var(--text-muted); }
+        .divider { height: 1px; background: var(--border); margin: 32px 0; }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         HEADER
+    ============================================= -->
+    <header class="site-header">
+        <a href="/docs" class="header-logo">
+            <div class="header-logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            Ofast <span>Toolkit</span>
+        </a>
+
+        <div class="header-divider"></div>
+        <span class="header-badge">Docs</span>
+
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/docs" class="active">Documentation</a>
+            <a href="https://ofastshop.com" target="_blank">ofastshop.com</a>
+            <a href="#" class="header-cta">Download Plugin</a>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- =============================================
+         DOCS LAYOUT
+    ============================================= -->
+    <div class="docs-layout">
+
+        <!-- =============================================
+             LEFT SIDEBAR
+        ============================================= -->
+        <aside class="docs-sidebar" id="docsSidebar">
+
+            <div class="sidebar-search">
+                <div class="sidebar-search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" placeholder="Search docs..." id="sidebarSearch">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Start Here</div>
+                <a href="/docs/index.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🏠</span>
+                    Overview
+                </a>
+                <a href="/docs/getting-started.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🚀</span>
+                    Getting Started
+                </a>
+                <a href="/docs/dashboard.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">📊</span>
+                    Dashboard
+                    <span class="sidebar-badge badge-core">Core</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Communication</div>
+                <a href="/docs/email.html" class="sidebar-link active">
+                    <span class="sidebar-link-icon">📧</span>
+                    Email Module
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/smtp.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">📨</span>
+                    SMTP Configuration
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/sms.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">💬</span>
+                    SMS Channel
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/contact-forms.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">📝</span>
+                    Contact Forms
+                    <span class="sidebar-badge badge-disabled">Off</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Security</div>
+                <a href="/docs/spam-protection.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🛡️</span>
+                    Spam Protection
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/social-login.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🔐</span>
+                    Social Login
+                    <span class="sidebar-badge badge-disabled">Off</span>
+                </a>
+                <a href="/docs/debug-indicator.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🐛</span>
+                    Debug Indicator
+                    <span class="sidebar-badge badge-disabled">Off</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Customization</div>
+                <a href="/docs/admin-studio.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🎨</span>
+                    Admin Studio
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/login-redesign.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">🖼️</span>
+                    Login Redesign
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Utility</div>
+                <a href="/docs/code-snippets.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">✂️</span>
+                    Code Snippets
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+                <a href="/docs/redirects.html" class="sidebar-link">
+                    <span class="sidebar-link-icon">↪️</span>
+                    Redirects Manager
+                    <span class="sidebar-badge badge-enabled">On</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- =============================================
+             MAIN CONTENT
+        ============================================= -->
+        <main class="docs-content">
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="/docs">Docs</a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+                <a href="#">Communication</a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+                <span>Email Module</span>
+            </nav>
+
+            <!-- Module header -->
+            <div class="module-header">
+                <div class="module-tag">
+                    📧 Communication
+                </div>
+                <h1 class="module-title">Email Module</h1>
+                <p class="module-description">
+                    Send personalized bulk emails to your users by role, manage drafts, view email history, and customize your email template — all from one clean interface.
+                </p>
+                <div class="module-meta">
+                    <div class="module-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        5 min read
+                    </div>
+                    <div class="module-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20,6 9,17 4,12"/>
+                        </svg>
+                        Free module
+                    </div>
+                    <div class="module-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        WordPress 5.8+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content body -->
+            <div class="content-body">
+
+                <h2 id="overview">Overview</h2>
+                <p>
+                    The Email Module is your built-in email marketing tool. Instead of installing a separate plugin, you can send targeted emails directly from your WordPress admin — by user role, specific user IDs, or your entire user base.
+                </p>
+                <p>
+                    Every email is wrapped in your branded template automatically, with support for personalization placeholders so each recipient gets a message that feels written for them.
+                </p>
+
+                <div class="callout callout-info">
+                    <span class="callout-icon">💡</span>
+                    <div>This module works best when combined with the <strong>SMTP Configuration</strong> module. SMTP ensures your emails actually reach inboxes instead of going to spam.</div>
+                </div>
+
+                <h2 id="requirements">Requirements</h2>
+                <ul>
+                    <li>WordPress 5.8 or higher</li>
+                    <li>PHP 7.4 or higher</li>
+                    <li>Ofast Toolkit plugin activated</li>
+                    <li>Email module toggled <strong>ON</strong> in the dashboard</li>
+                </ul>
+
+                <h2 id="setup">Setup</h2>
+                <p>Follow these steps to get the Email module working on your site:</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Enable the module</h4>
+                            <p>Go to <strong>Ofast Toolkit → Dashboard</strong> and toggle the Email Module to <strong>ON</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Go to Emailer</h4>
+                            <p>Navigate to <strong>Ofast Toolkit → Emailer</strong> in your WordPress admin menu.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Set up your email template</h4>
+                            <p>Click the <strong>Templates</strong> tab. Add your logo, brand colors, company name, and social links.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Send a test email</h4>
+                            <p>Go to the <strong>Send Email</strong> tab, compose a message, check <strong>"Send to me as test only"</strong>, and hit Send.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="settings">Settings</h2>
+                <p>All email template settings are managed under the <strong>Templates</strong> tab.</p>
+
+                <table class="settings-table">
+                    <thead>
+                        <tr>
+                            <th>Setting</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="setting-name">Template Style</span></td>
+                            <td>Visual style of the email wrapper. Choose Modern, Classic, Minimal, or Custom HTML.</td>
+                            <td>Modern</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Primary Color</span></td>
+                            <td>Header background and button color.</td>
+                            <td>#6366f1</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Company Name</span></td>
+                            <td>Shown in the email header and footer.</td>
+                            <td>Your site name</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Logo URL</span></td>
+                            <td>Upload or paste your logo URL. Shown in email header.</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">From Name</span></td>
+                            <td>The sender name recipients will see in their inbox.</td>
+                            <td>Your site name</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Reply-To</span></td>
+                            <td>Email address replies will be sent to.</td>
+                            <td>Admin email</td>
+                        </tr>
+                        <tr>
+                            <td><span class="setting-name">Apply Template To</span></td>
+                            <td>Choose which emails use the template: Ofast Emailer, WordPress notifications, WooCommerce emails, or all.</td>
+                            <td>Emailer only</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="how-it-works">How it works</h2>
+                <p>When you send an email through the Emailer, here is what happens behind the scenes:</p>
+                <ul>
+                    <li>You select recipients by role, user ID range, or manual selection from the user table.</li>
+                    <li>The plugin fetches the matching users from your WordPress database.</li>
+                    <li>Placeholders like <code>&#123;&#123;user_first_name&#125;&#125;</code> are replaced with each user's real data.</li>
+                    <li>The message is wrapped in your branded email template.</li>
+                    <li>Emails are sent using <code>wp_mail()</code> — which routes through SMTP if configured.</li>
+                    <li>A log entry is recorded in Email History with subject, recipient count, and status.</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <span class="callout-icon">⚠️</span>
+                    <div>Sending to more than <strong>500 users at once</strong> on shared hosting may cause timeouts. For large lists, use a dedicated SMTP provider like SendGrid or Mailgun which have built-in delivery queues.</div>
+                </div>
+
+                <h3 id="placeholders">Available Placeholders</h3>
+                <p>Use these in your subject line or message body to personalize each email:</p>
+
+                <div class="code-block">
+                    <span class="code-lang">Placeholders</span>
+                    <pre>&#123;&#123;user_id&#125;&#125;             → User's WordPress ID
+&#123;&#123;username&#125;&#125;           → Login username
+&#123;&#123;user_display_name&#125;&#125;  → Display name
+&#123;&#123;user_first_name&#125;&#125;    → First name
+&#123;&#123;user_last_name&#125;&#125;     → Last name
+&#123;&#123;user_email&#125;&#125;         → Email address</pre>
+                </div>
+
+                <h2 id="faq">FAQ</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        My emails are going to spam. What should I do?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Set up the SMTP Configuration module with a dedicated email provider (SendGrid, Mailgun, Zoho). Also check your domain's SPF, DKIM, and DMARC records using the DNS checker inside the SMTP module.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I schedule emails to send later?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. In the Send Email tab, set a date and time in the Schedule field before sending. The email will be queued and sent at that time via WordPress cron.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I preview an email before sending?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the <strong>Preview Email</strong> button in the Send Email tab. A modal will open showing exactly how the email will look in desktop and mobile view.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Where can I see emails I have already sent?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Go to <strong>Emailer → History</strong>. Each entry shows the subject, date sent, number of recipients, status, and a preview of the email body.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Prev / Next -->
+            <nav class="docs-pagination">
+                <a href="/docs/dashboard.html">
+                    <span class="pagination-label">← Previous</span>
+                    <span class="pagination-title">Dashboard</span>
+                </a>
+                <a href="/docs/smtp.html">
+                    <span class="pagination-label">Next →</span>
+                    <span class="pagination-title">SMTP Configuration</span>
+                </a>
+            </nav>
+
+        </main>
+
+        <!-- =============================================
+             RIGHT TOC
+        ============================================= -->
+        <aside class="docs-toc">
+            <div class="toc-title">On this page</div>
+            <ul class="toc-list">
+                <li><a href="#overview" class="toc-link active">Overview</a></li>
+                <li><a href="#requirements" class="toc-link">Requirements</a></li>
+                <li><a href="#setup" class="toc-link">Setup</a></li>
+                <li><a href="#settings" class="toc-link">Settings</a></li>
+                <li><a href="#how-it-works" class="toc-link">How it works</a></li>
+                <li><a href="#placeholders" class="toc-link sub">Placeholders</a></li>
+                <li><a href="#faq" class="toc-link">FAQ</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18,15 12,9 6,15"/>
+        </svg>
+    </button>
+
+    <!-- =============================================
+         JAVASCRIPT
+    ============================================= -->
+    <script>
+        // Mobile sidebar toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const docsSidebar   = document.getElementById('docsSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            docsSidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('visible');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            docsSidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('visible');
+        });
+
+        // Scroll spy — highlight active TOC link
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const sections = document.querySelectorAll('.content-body h2[id], .content-body h3[id]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-62px 0px -70% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // Sidebar search filter
+        const searchInput = document.getElementById('sidebarSearch');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            sidebarLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                link.style.display = text.includes(query) ? 'flex' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

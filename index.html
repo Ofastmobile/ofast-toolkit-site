@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofast Toolkit — The WordPress Admin Control Center</title>
+    <meta name="description" content="One powerful plugin that replaces 10+ scattered tools. SMTP, Email, SMS, Security, Login Redesign and more — all in one clean modular dashboard.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           VARIABLES
+        ============================================= */
+        :root {
+            --primary:       #6366f1;
+            --primary-dark:  #4f46e5;
+            --primary-dim:   rgba(99,102,241,0.12);
+            --gold:          #ffcc00;
+            --gold-dark:     #e6b800;
+            --gold-dim:      rgba(255,204,0,0.12);
+            --dark:          #0a0a0f;
+            --dark-2:        #111118;
+            --dark-3:        #1a1a24;
+            --dark-4:        #22222f;
+            --border-dark:   rgba(255,255,255,0.08);
+            --border-light:  rgba(255,255,255,0.04);
+            --text-white:    #f1f5f9;
+            --text-dim:      #94a3b8;
+            --text-dimmer:   #64748b;
+            --green:         #10b981;
+            --radius-sm:     6px;
+            --radius:        12px;
+            --radius-lg:     20px;
+            --font-head:     'Syne', sans-serif;
+            --font-body:     'DM Sans', sans-serif;
+            --font-mono:     'Fira Code', monospace;
+        }
+
+        /* =============================================
+           RESET
+        ============================================= */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            color: var(--text-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        /* =============================================
+           NAV
+        ============================================= */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 40px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-dark);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-logo-mark {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-logo span { color: var(--gold); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dim);
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--text-white); background: var(--border-dark); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 12px 26px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 0 0 rgba(99,102,241,0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.35);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #0a0a0f;
+            font-weight: 700;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(255,204,0,0.3);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-dim);
+            border: 1px solid var(--border-dark);
+        }
+
+        .btn-ghost:hover {
+            color: var(--text-white);
+            border-color: rgba(255,255,255,0.2);
+            background: var(--border-dark);
+        }
+
+        .btn-lg { padding: 15px 34px; font-size: 16px; border-radius: var(--radius-sm); }
+        .btn-sm { padding: 8px 18px; font-size: 13px; }
+
+        /* =============================================
+           HERO
+        ============================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Mesh gradient background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 80% 50%, rgba(255,204,0,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(99,102,241,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Grid pattern */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--border-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.6s ease both;
+        }
+
+        .hero-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: clamp(42px, 7vw, 80px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 28px;
+            animation: fadeInDown 0.7s 0.1s ease both;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--gold) 0%, #ff9500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title .highlight-purple {
+            background: linear-gradient(135deg, #a78bfa 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-dim);
+            max-width: 620px;
+            margin: 0 auto 44px;
+            line-height: 1.65;
+            font-weight: 400;
+            animation: fadeInDown 0.7s 0.2s ease both;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            animation: fadeInDown 0.7s 0.3s ease both;
+        }
+
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 72px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-dark);
+            animation: fadeInDown 0.7s 0.4s ease both;
+        }
+
+        .hero-stat-num {
+            font-family: var(--font-head);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-white);
+            letter-spacing: -1px;
+        }
+
+        .hero-stat-num span { color: var(--gold); }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-dimmer);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .hero-stat-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--border-dark);
+        }
+
+        /* Dashboard mockup */
+        .hero-mockup {
+            max-width: 900px;
+            margin: 60px auto 0;
+            background: var(--dark-3);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.04),
+                0 40px 80px rgba(0,0,0,0.5),
+                0 0 100px rgba(99,102,241,0.1);
+            animation: fadeInUp 0.8s 0.5s ease both;
+        }
+
+        .mockup-bar {
+            background: var(--dark-4);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mockup-url {
+            margin-left: 12px;
+            background: var(--dark-3);
+            border: 1px solid var(--border-dark);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-dimmer);
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .mockup-body {
+            padding: 28px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .mockup-card {
+            background: var(--dark-4);
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .mockup-card:hover {
+            border-color: rgba(99,102,241,0.3);
+            background: rgba(99,102,241,0.05);
+        }
+
+        .mockup-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .mockup-card-icon {
+            font-size: 20px;
+        }
+
+        .mockup-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-on {
+            background: rgba(16,185,129,0.15);
+            color: var(--green);
+        }
+
+        .badge-off {
+            background: rgba(239,68,68,0.12);
+            color: #f87171;
+        }
+
+        .badge-always {
+            background: var(--primary-dim);
+            color: #a78bfa;
+        }
+
+        .mockup-card-title {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .mockup-card-desc {
+            font-size: 11px;
+            color: var(--text-dimmer);
+            line-height: 1.5;
+        }
+
+        .mockup-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .toggle-track {
+            width: 32px;
+            height: 18px;
+            border-radius: 9px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .toggle-on { background: var(--primary); }
+        .toggle-off { background: var(--dark-3); border: 1px solid var(--border-dark); }
+
+        .toggle-thumb {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            transition: left 0.2s;
+        }
+
+        .toggle-on .toggle-thumb { left: 17px; }
+        .toggle-off .toggle-thumb { left: 3px; }
+
+        .toggle-label {
+            font-size: 11px;
+            color: var(--text-dimmer);
+        }
+
+        /* =============================================
+           SECTION STYLES
+        ============================================= */
+        section { padding: 100px 40px; }
+
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 16px;
+            background: var(--primary-dim);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-head);
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 17px;
+            color: var(--text-dim);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        .text-center { text-align: center; }
+        .text-center .section-sub { margin: 0 auto; }
+
+        /* =============================================
+           PROBLEM SECTION
+        ============================================= */
+        .problem-section {
+            background: var(--dark-2);
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(239,68,68,0.04);
+            border: 1px solid rgba(239,68,68,0.1);
+            border-radius: var(--radius);
+        }
+
+        .problem-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+        .problem-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 2px;
+        }
+
+        .problem-item p {
+            font-size: 13px;
+            color: var(--text-dimmer);
+        }
+
+        .solution-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .solution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(16,185,129,0.04);
+            border: 1px solid rgba(16,185,129,0.12);
+            border-radius: var(--radius);
+        }
+
+        .solution-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 2px;
+        }
+
+        .solution-item p { font-size: 13px; color: var(--text-dimmer); }
+
+        /* =============================================
+           MODULES GRID
+        ============================================= */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 56px;
+        }
+
+        .module-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary-dim) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .module-card:hover {
+            border-color: rgba(99,102,241,0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .module-card:hover::before { opacity: 1; }
+
+        .module-card-emoji {
+            font-size: 28px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .module-card-name {
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .module-card-desc {
+            font-size: 12.5px;
+            color: var(--text-dimmer);
+            line-height: 1.55;
+            position: relative;
+        }
+
+        .module-card-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+            margin-top: 12px;
+            letter-spacing: 0.04em;
+            position: relative;
+        }
+
+        .tag-free { background: rgba(16,185,129,0.12); color: var(--green); }
+        .tag-pro { background: var(--gold-dim); color: var(--gold); }
+
+        /* =============================================
+           FEATURES / WHY
+        ============================================= */
+        .why-section { background: var(--dark-2); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+
+        .why-card {
+            padding: 32px 28px;
+            background: var(--dark-3);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            border-color: rgba(255,204,0,0.2);
+            box-shadow: 0 0 30px rgba(255,204,0,0.04);
+        }
+
+        .why-card-num {
+            font-family: var(--font-head);
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--border-dark);
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .why-card h3 {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .why-card p { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+        /* =============================================
+           PRICING
+        ============================================= */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 56px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+        }
+
+        .pricing-card.pro {
+            background: linear-gradient(145deg, #14142a 0%, #1a1a2e 100%);
+            border-color: rgba(99,102,241,0.3);
+            box-shadow: 0 0 0 1px rgba(99,102,241,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .pricing-card.pro::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .pricing-popular {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .pricing-plan {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dimmer);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .pricing-price {
+            font-family: var(--font-head);
+            font-size: 54px;
+            font-weight: 800;
+            color: var(--text-white);
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 6px;
+        }
+
+        .pricing-price sup {
+            font-size: 24px;
+            font-weight: 600;
+            vertical-align: top;
+            margin-top: 10px;
+            letter-spacing: 0;
+        }
+
+        .pricing-price-note {
+            font-size: 13px;
+            color: var(--text-dimmer);
+            margin-bottom: 28px;
+        }
+
+        .pricing-divider {
+            height: 1px;
+            background: var(--border-dark);
+            margin: 24px 0;
+        }
+
+        .pricing-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-dim);
+        }
+
+        .pricing-feature-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .icon-check { background: rgba(16,185,129,0.15); color: var(--green); }
+        .icon-cross { background: rgba(239,68,68,0.1); color: #f87171; }
+
+        .pricing-naira {
+            font-size: 12px;
+            color: var(--text-dimmer);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* =============================================
+           WHO IS IT FOR
+        ============================================= */
+        .for-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 56px;
+        }
+
+        .for-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+        }
+
+        .for-card:hover { border-color: rgba(255,204,0,0.15); }
+
+        .for-card-emoji { font-size: 36px; margin-bottom: 18px; }
+
+        .for-card h3 {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .for-card p { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+        /* =============================================
+           CTA BAND
+        ============================================= */
+        .cta-band {
+            background: linear-gradient(135deg, #0f0f2e 0%, #1a1a3e 50%, #0f0f2e 100%);
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(99,102,241,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-band .section-title { margin-bottom: 12px; }
+        .cta-band .section-sub { margin-bottom: 40px; }
+
+        .cta-band-btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* =============================================
+           FOOTER
+        ============================================= */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid var(--border-dark);
+            padding: 72px 40px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-mark {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .footer-brand-logo span { color: var(--gold); }
+
+        .footer-brand-desc {
+            font-size: 14px;
+            color: var(--text-dimmer);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 280px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social {
+            width: 34px;
+            height: 34px;
+            background: var(--border-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--text-dimmer);
+            transition: all 0.2s ease;
+        }
+
+        .footer-social:hover {
+            background: var(--primary-dim);
+            border-color: rgba(99,102,241,0.3);
+            color: var(--primary);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-white);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            color: var(--text-dimmer);
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover { color: var(--text-white); }
+
+        .footer-bottom {
+            padding-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-dimmer);
+        }
+
+        .footer-copy a {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .footer-copy a:hover { color: var(--gold-dark); }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 13px;
+            color: var(--text-dimmer);
+            transition: color 0.2s ease;
+        }
+
+        .footer-bottom-links a:hover { color: var(--text-white); }
+
+        /* =============================================
+           ANIMATIONS
+        ============================================= */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 1024px) {
+            .modules-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            section { padding: 72px 20px; }
+
+            .nav-links { display: none; }
+
+            .hero { padding: 100px 20px 60px; }
+
+            .problem-grid,
+            .why-grid,
+            .for-grid,
+            .pricing-grid { grid-template-columns: 1fr; }
+
+            .modules-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .mockup-body { grid-template-columns: 1fr 1fr; }
+
+            .hero-stats { gap: 20px; flex-wrap: wrap; }
+
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+            .footer-bottom-links { flex-wrap: wrap; gap: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .modules-grid { grid-template-columns: 1fr; }
+            .mockup-body { grid-template-columns: 1fr; }
+            .pricing-price { font-size: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAV
+    ============================================= -->
+    <nav id="mainNav">
+        <div class="nav-logo">
+            <div class="nav-logo-mark">⚡</div>
+            Ofast <span>Toolkit</span>
+        </div>
+        <div class="nav-links">
+            <a href="#modules">Modules</a>
+            <a href="#pricing">Pricing</a>
+            <a href="/docs">Docs</a>
+            <a href="https://ofastshop.com" target="_blank">ofastshop.com</a>
+            <a href="#pricing" class="btn btn-gold btn-sm" style="margin-left:8px;">Get Pro — $39</a>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         HERO
+    ============================================= -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-eyebrow">
+                <span class="hero-eyebrow-dot"></span>
+                Built for serious WordPress admins
+            </div>
+
+            <h1 class="hero-title">
+                One plugin.<br>
+                <span class="highlight">Total control</span> of your<br>
+                <span class="highlight-purple">WordPress backend.</span>
+            </h1>
+
+            <p class="hero-sub">
+                Stop installing 10+ scattered plugins that slow down your site and conflict with each other. Ofast Toolkit brings everything into one clean, modular control center.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary btn-lg">
+                    ⬇️ Download Free
+                </a>
+                <a href="#pricing" class="btn btn-gold btn-lg">
+                    Get Pro — $39
+                </a>
+                <a href="/docs" class="btn btn-ghost btn-lg">
+                    View Docs →
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div>
+                    <div class="hero-stat-num">12<span>+</span></div>
+                    <div class="hero-stat-label">Built-in Modules</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div>
+                    <div class="hero-stat-num">630<span>+</span></div>
+                    <div class="hero-stat-label">Active Users</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div>
+                    <div class="hero-stat-num">1<span> plugin</span></div>
+                    <div class="hero-stat-label">Replaces 10+</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div>
+                    <div class="hero-stat-num">0<span> conflicts</span></div>
+                    <div class="hero-stat-label">Fully Modular</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Mockup -->
+            <div class="hero-mockup">
+                <div class="mockup-bar">
+                    <div class="mockup-dot" style="background:#ff5f57;"></div>
+                    <div class="mockup-dot" style="background:#febc2e;"></div>
+                    <div class="mockup-dot" style="background:#28c840;"></div>
+                    <div class="mockup-url">yoursite.com/wp-admin → Ofast Toolkit</div>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">📊</span>
+                            <span class="mockup-badge badge-always">Always On</span>
+                        </div>
+                        <div class="mockup-card-title">Dashboard</div>
+                        <div class="mockup-card-desc">User counts, system stats at a glance</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Core Module</span>
+                        </div>
+                    </div>
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">📧</span>
+                            <span class="mockup-badge badge-on">Enabled</span>
+                        </div>
+                        <div class="mockup-card-title">Email Module</div>
+                        <div class="mockup-card-desc">Bulk emails with templates & scheduling</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Enabled</span>
+                        </div>
+                    </div>
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">📨</span>
+                            <span class="mockup-badge badge-on">Enabled</span>
+                        </div>
+                        <div class="mockup-card-title">SMTP Config</div>
+                        <div class="mockup-card-desc">SendGrid, Mailgun, Zoho, Gmail</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Enabled</span>
+                        </div>
+                    </div>
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">💬</span>
+                            <span class="mockup-badge badge-on">Enabled</span>
+                        </div>
+                        <div class="mockup-card-title">SMS Channel</div>
+                        <div class="mockup-card-desc">Twilio, Termii, Africa's Talking</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Enabled</span>
+                        </div>
+                    </div>
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">🛡️</span>
+                            <span class="mockup-badge badge-on">Enabled</span>
+                        </div>
+                        <div class="mockup-card-title">Spam Protection</div>
+                        <div class="mockup-card-desc">Cloudflare Turnstile & reCAPTCHA</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Enabled</span>
+                        </div>
+                    </div>
+                    <div class="mockup-card">
+                        <div class="mockup-card-head">
+                            <span class="mockup-card-icon">📝</span>
+                            <span class="mockup-badge badge-off">Disabled</span>
+                        </div>
+                        <div class="mockup-card-title">Contact Forms</div>
+                        <div class="mockup-card-desc">Custom forms with submission storage</div>
+                        <div class="mockup-toggle">
+                            <div class="toggle-track toggle-off"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Disabled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PROBLEM VS SOLUTION
+    ============================================= -->
+    <section class="problem-section">
+        <div class="section-inner">
+            <div class="text-center reveal">
+                <div class="section-eyebrow">The Problem</div>
+                <h2 class="section-title">Too many plugins. Too much chaos.</h2>
+                <p class="section-sub">The average WordPress admin installs a different plugin for every small task — and pays the price in conflicts, slowdowns, and confusion.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-list reveal">
+                    <div class="problem-item">
+                        <span class="problem-icon">❌</span>
+                        <div>
+                            <h4>Plugin conflicts everywhere</h4>
+                            <p>5 plugins doing 5 jobs but fighting each other constantly.</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="problem-icon">🐌</span>
+                        <div>
+                            <h4>Slower site performance</h4>
+                            <p>Every extra plugin adds weight — scripts, styles, database queries.</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="problem-icon">💸</span>
+                        <div>
+                            <h4>Paying for too many tools</h4>
+                            <p>Multiple premium plugins adding up to more than they're worth.</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <span class="problem-icon">😵</span>
+                        <div>
+                            <h4>Scattered settings everywhere</h4>
+                            <p>No single control panel. Settings spread across 10 different menus.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-list reveal">
+                    <div class="solution-item">
+                        <span class="problem-icon">✅</span>
+                        <div>
+                            <h4>One plugin, zero conflicts</h4>
+                            <p>Everything built to work together. Tested, stable, reliable.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <span class="problem-icon">⚡</span>
+                        <div>
+                            <h4>Lightweight modular architecture</h4>
+                            <p>Enable only what you need. Disable the rest. No bloat.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <span class="problem-icon">💰</span>
+                        <div>
+                            <h4>One fair price</h4>
+                            <p>Free tier covers the essentials. Pro at $39 covers everything.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <span class="problem-icon">🎯</span>
+                        <div>
+                            <h4>One clean control center</h4>
+                            <p>All your tools, all your settings, all in one dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         MODULES
+    ============================================= -->
+    <section id="modules">
+        <div class="section-inner">
+            <div class="text-center reveal">
+                <div class="section-eyebrow">12 Modules</div>
+                <h2 class="section-title">Everything your WordPress site needs.</h2>
+                <p class="section-sub">Enable what you need. Disable what you don't. Every module is independent — no dead weight.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">📊</div>
+                    <div class="module-card-name">Dashboard</div>
+                    <div class="module-card-desc">User counts by role, recent activity, and system stats at a glance.</div>
+                    <span class="module-card-tag tag-free">Free · Always On</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">📧</div>
+                    <div class="module-card-name">Email Module</div>
+                    <div class="module-card-desc">Send personalized bulk emails by role, manage drafts, view history, and design templates.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">📨</div>
+                    <div class="module-card-name">SMTP Configuration</div>
+                    <div class="module-card-desc">Configure SendGrid, Mailgun, Zoho, or Gmail for reliable email delivery.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">💬</div>
+                    <div class="module-card-name">SMS Channel</div>
+                    <div class="module-card-desc">Multi-provider SMS via Twilio, Africa's Talking, Termii, and SmartSMS Solutions.</div>
+                    <span class="module-card-tag tag-pro">Pro</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">🛡️</div>
+                    <div class="module-card-name">Spam Protection</div>
+                    <div class="module-card-desc">Cloudflare Turnstile and Google reCAPTCHA v2/v3 to block bots and protect forms.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">🎨</div>
+                    <div class="module-card-name">Admin Studio</div>
+                    <div class="module-card-desc">Customize user roles, the menu editor, admin URL, and backend branding.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">🖼️</div>
+                    <div class="module-card-name">Login Redesign</div>
+                    <div class="module-card-desc">Fully brand the WordPress login page with your logo, colors, and identity.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">✂️</div>
+                    <div class="module-card-name">Code Snippets</div>
+                    <div class="module-card-desc">Add and manage custom PHP snippets with visual toggle switches — safer than editing functions.php.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">↪️</div>
+                    <div class="module-card-name">Redirects Manager</div>
+                    <div class="module-card-desc">301/302/307 redirects with import/export and usage tracking. Essential for SEO.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">📝</div>
+                    <div class="module-card-name">Contact Forms</div>
+                    <div class="module-card-desc">Custom contact form builder with submission storage and admin review panel.</div>
+                    <span class="module-card-tag tag-pro">Pro</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">🔐</div>
+                    <div class="module-card-name">Social Login</div>
+                    <div class="module-card-desc">Let users log in with Google and Facebook accounts via OAuth.</div>
+                    <span class="module-card-tag tag-pro">Pro</span>
+                </div>
+                <div class="module-card reveal">
+                    <div class="module-card-emoji">🐛</div>
+                    <div class="module-card-name">Debug Indicator</div>
+                    <div class="module-card-desc">Warns you if WP_DEBUG is active on a production site — a critical security alert.</div>
+                    <span class="module-card-tag tag-free">Free</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         WHY OFAST TOOLKIT
+    ============================================= -->
+    <section class="why-section">
+        <div class="section-inner">
+            <div class="text-center reveal">
+                <div class="section-eyebrow">Why Ofast Toolkit</div>
+                <h2 class="section-title">Built different. On purpose.</h2>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <div class="why-card-num">01</div>
+                    <h3>Truly modular</h3>
+                    <p>Each module is independent. Toggle on what you need, off what you don't. No bloat, no wasted resources loading features you never use.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-num">02</div>
+                    <h3>Security-first</h3>
+                    <p>AES-256 password encryption, header injection prevention, CSRF protection, rate limiting, and ownership verification built into every operation.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-num">03</div>
+                    <h3>Built by a real developer</h3>
+                    <p>Not a corporate product. Built by a solo WordPress developer who uses it every day on a live platform with 630+ users. Real problems, real solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         WHO IS IT FOR
+    ============================================= -->
+    <section>
+        <div class="section-inner">
+            <div class="text-center reveal">
+                <div class="section-eyebrow">Who It's For</div>
+                <h2 class="section-title">Built for people who take their WordPress seriously.</h2>
+            </div>
+
+            <div class="for-grid">
+                <div class="for-card reveal">
+                    <div class="for-card-emoji">🏗️</div>
+                    <h3>Platform Owners</h3>
+                    <p>Running a marketplace, membership site, or LMS? Ofast Toolkit gives you the backend control you need without the plugin chaos.</p>
+                </div>
+                <div class="for-card reveal">
+                    <div class="for-card-emoji">🎓</div>
+                    <h3>LMS & Marketplace Admins</h3>
+                    <p>Managing instructors, affiliates, vendors, and students? Keep everything under control from one unified panel.</p>
+                </div>
+                <div class="for-card reveal">
+                    <div class="for-card-emoji">👨‍💻</div>
+                    <h3>WordPress Developers</h3>
+                    <p>Building sites for clients? Install Ofast Toolkit instead of 10 plugins. One setup, one license, everything covered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PRICING
+    ============================================= -->
+    <section id="pricing" style="background: var(--dark-2); border-top: 1px solid var(--border-dark);">
+        <div class="section-inner">
+            <div class="text-center reveal">
+                <div class="section-eyebrow">Pricing</div>
+                <h2 class="section-title">Simple, honest pricing.</h2>
+                <p class="section-sub">Start free. Upgrade when you're ready. No subscriptions, no tricks — just a one-time payment for the Pro version.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-plan">Free</div>
+                    <div class="pricing-price"><sup>$</sup>0</div>
+                    <div class="pricing-price-note">Forever free. No credit card.</div>
+
+                    <div class="pricing-divider"></div>
+
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Dashboard Module
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Email Module
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            SMTP Configuration
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Spam Protection
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Admin Studio
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Login Redesign
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Code Snippets Manager
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Redirects Manager
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Debug Indicator
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-cross">✗</div>
+                            SMS Channel
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-cross">✗</div>
+                            Social Login
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-cross">✗</div>
+                            Contact Forms
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">
+                        ⬇️ Download Free
+                    </a>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card pro reveal">
+                    <div class="pricing-popular">Most Popular</div>
+                    <div class="pricing-plan" style="color: var(--gold);">Pro</div>
+                    <div class="pricing-price"><sup>$</sup>39</div>
+                    <div class="pricing-price-note">One-time payment. Lifetime access.</div>
+
+                    <div class="pricing-divider"></div>
+
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Everything in Free
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            SMS Channel (Twilio, Termii, Africa's Talking)
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Social Login (Google & Facebook OAuth)
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Contact Forms with submission storage
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            SMTP Fallback Server
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Email Health Reports
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Advanced Rate Limiting
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            Priority support
+                        </div>
+                        <div class="pricing-feature">
+                            <div class="pricing-feature-icon icon-check">✓</div>
+                            All future Pro modules
+                        </div>
+                    </div>
+
+                    <a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/" target="_blank" class="btn btn-gold" style="width:100%; justify-content:center;">
+                        Get Ofast Toolkit Pro →
+                    </a>
+
+                    <div class="pricing-naira">Also available at ₦50,000 via ofastshop.com</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CTA BAND
+    ============================================= -->
+    <section class="cta-band">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-eyebrow">Get Started Today</div>
+                <h2 class="section-title">Your WordPress backend deserves better.</h2>
+                <p class="section-sub">Download the free version and see the difference immediately. Upgrade to Pro when you're ready.</p>
+            </div>
+            <div class="cta-band-btns reveal">
+                <a href="#" class="btn btn-primary btn-lg">⬇️ Download Free</a>
+                <a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/" target="_blank" class="btn btn-gold btn-lg">Get Pro — $39</a>
+                <a href="/docs" class="btn btn-ghost btn-lg">Read the Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+    ============================================= -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-logo">
+                        <div class="footer-brand-mark">⚡</div>
+                        Ofast <span>Toolkit</span>
+                    </div>
+                    <p class="footer-brand-desc">
+                        A powerful WordPress admin control center built by Ofastshop Digitals under Bofast World. One plugin. Total control.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://ofastshop.com" class="footer-social" title="Website">🌐</a>
+                        <a href="#" class="footer-social" title="LinkedIn">in</a>
+                        <a href="#" class="footer-social" title="X / Twitter">𝕏</a>
+                        <a href="#" class="footer-social" title="WhatsApp">💬</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Plugin</h4>
+                    <ul>
+                        <li><a href="#modules">All Modules</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Download Free</a></li>
+                        <li><a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/" target="_blank">Get Pro</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/docs">Documentation</a></li>
+                        <li><a href="/docs/getting-started.html">Getting Started</a></li>
+                        <li><a href="/docs/smtp.html">SMTP Setup Guide</a></li>
+                        <li><a href="/docs/email.html">Email Module</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="https://ofastshop.com" target="_blank">Ofastshop.com</a></li>
+                        <li><a href="#">Bofast World</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">hello@bofastworld.net</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    © 2025 <a href="https://ofastshop.com" target="_blank">Ofastshop Digitals</a> · A product of <a href="#">Bofast World</a> (CAC BN 3222317). All rights reserved.
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         JS
+    ============================================= -->
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = (i % 4) * 0.08 + 's';
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Nav scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.style.background = 'rgba(10,10,15,0.97)';
+            } else {
+                nav.style.background = 'rgba(10,10,15,0.85)';
+            }
+        });
+    </script>
+</body>
+</html>
