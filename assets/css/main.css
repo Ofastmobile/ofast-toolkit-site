@@ -328,7 +328,8 @@ h5 {
   }
 
   .hero-image-wrap {
-    transform: none; /* Remove 3D tilt on mobile/tablet for better centering */
+    transform: none;
+    /* Remove 3D tilt on mobile/tablet for better centering */
     max-width: 90%;
     margin: 0 auto;
   }
@@ -1124,7 +1125,7 @@ h5 {
   font-family: 'Syne', sans-serif;
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--purple-dark);
+  color: var(--purple);
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -1549,10 +1550,12 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1; /* Under the main wrapper which has z-index 2 */
+  z-index: 1;
+  /* Under the main wrapper which has z-index 2 */
   background: var(--dark-2);
   border-top: 1px solid var(--border-dark);
-  overflow: hidden; /* To contain the huge text */
+  overflow: hidden;
+  /* To contain the huge text */
 }
 
 .footer-huge-text {
@@ -1561,10 +1564,12 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Syne', sans-serif;
-  font-size: 11vw; /* Reduced from 15vw to fit full word */
+  font-size: 11vw;
+  /* Reduced from 15vw to fit full word */
   font-weight: 800;
   color: var(--text-primary);
-  opacity: 0.08; /* Increased visibility */
+  opacity: 0.08;
+  /* Increased visibility */
   white-space: nowrap;
   pointer-events: none;
   z-index: 0;
@@ -1575,7 +1580,8 @@ footer {
   z-index: 1;
   max-width: 1160px;
   margin: 0 auto;
-  padding: 100px 24px 40px; /* Increased height */
+  padding: 100px 24px 40px;
+  /* Increased height */
 }
 
 .footer-top {
@@ -1631,7 +1637,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* Prevents squishing into ovals */
+  flex-shrink: 0;
+  /* Prevents squishing into ovals */
   background: transparent;
   border: 1px solid var(--border-dark);
   border-radius: 50%;
