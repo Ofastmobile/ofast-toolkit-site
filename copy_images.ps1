@@ -1,0 +1,3 @@
+Copy-Item -Path "C:\Users\bodma\.gemini\antigravity\brain\06b8a03b-aa5d-4418-a5c9-65acbe893710\security_shield_ui_1779506688669.png" -Destination "c:\My Projects\ofast\assets\img\security_shield.png" -Force
+Copy-Item -Path "C:\Users\bodma\.gemini\antigravity\brain\06b8a03b-aa5d-4418-a5c9-65acbe893710\modular_dashboard_1779506709378.png" -Destination "c:\My Projects\ofast\assets\img\modular_dashboard.png" -Force
+Copy-Item -Path "C:\Users\bodma\.gemini\antigravity\brain\06b8a03b-aa5d-4418-a5c9-65acbe893710\performance_graph_ui_1779506740597.png" -Destination "c:\My Projects\ofast\assets\img\performance_graph.png" -Force

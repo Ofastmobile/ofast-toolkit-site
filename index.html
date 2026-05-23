@@ -12,594 +12,705 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css?v=3.0">
-    <style>
-        html,
-        body {
-            background-color: #0A0A0F;
-            color: #1a1a3f;
-        }
-    </style>
+
 </head>
 
 <body>
+    <div class="site-main-wrapper"
+        style="background-color: var(--dark-1); position: relative; z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; overflow: hidden;">
 
-    <!-- =============================================
+        <!-- =============================================
          NAV
     ============================================= -->
-    <nav id="mainNav">
-        <a href="index.html" class="nav-logo">
-            <img src="highlight/img/ofast-tookit-logo__2_-removebg-preview.png" alt="Ofast Toolkit Logo"
-                style="height: 42px; width: auto;">
-            Ofast <span>Toolkit</span>
-        </a>
-        <div class="nav-links">
-            <a href="#modules">Modules</a>
-            <a href="#pricing">Pricing</a>
-            <a href="docs/index.html">Docs</a>
-            <a href="https://ofastshop.com" target="_blank">ofastshop.com</a>
-            <a href="#pricing" class="btn btn-gold btn-sm" style="margin-left:8px;">Get Pro — $39</a>
-        </div>
-    </nav>
+        <nav id="mainNav">
+            <a href="index.html" class="nav-logo">
+                <img src="highlight/img/ofast-tookit-logo__2_-removebg-preview.png" alt="Ofast Toolkit Logo"
+                    style="height: 42px; width: auto;">
+                Ofast <span>Toolkit</span>
+            </a>
+            <div class="nav-links">
+                <a href="#modules">Modules</a>
+                <a href="#pricing">Pricing</a>
+                <a href="docs/index.html">Docs</a>
+                <a onclick="window.open('https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/', '_blank')"
+                    class="btn btn-gold btn-sm" style="margin-left:8px; cursor: pointer;">Get Pro — $44</a>
+            </div>
+        </nav>
 
-    <!-- =============================================
+        <!-- =============================================
          HERO
     ============================================= -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-eyebrow">
-                <span class="hero-eyebrow-dot"></span>
-                Built for serious WordPress admins
-            </div>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-left reveal">
+                    <div class="hero-eyebrow">
+                        <span class="hero-eyebrow-dot"></span>
+                        All-in-one WordPress Solution
+                    </div>
 
-            <h1 class="hero-title">
-                One plugin.<br>
-                <span class="highlight">Total control</span> of your<br>
-                <span class="highlight-purple">WordPress backend.</span>
-            </h1>
+                    <h1 class="hero-title">
+                        Accelerate Your<br>
+                        <span style="white-space: nowrap;">Entire <span
+                                class="highlight-purple">WordPress</span></span><br>
+                        <span class="typewriter-wrap">
+                            <span id="typewriter-text" class="gradient-text">Workflow</span><span
+                                class="typewriter-cursor">|</span>
+                        </span>
+                    </h1>
 
-            <p class="hero-sub">
-                Stop installing 10+ scattered plugins that slow down your site and conflict with each other. Ofast
-                Toolkit brings everything into one clean, modular control center.
-            </p>
+                    <p class="hero-sub">
+                        Security, SMTP, spam protection, white-labeling, admin tools, login redesign and productivity
+                        modules — all in one lightweight toolkit.
+                    </p>
 
-            <div class="hero-cta">
-                <a href="#" class="btn btn-primary btn-lg">
-                    <i class="fa-solid fa-download"></i> Download Free
-                </a>
-                <a href="#pricing" class="btn btn-gold btn-lg">
-                    Get Pro — $39
-                </a>
-                <a href="docs/index.html" class="btn btn-ghost btn-lg">
-                    View Docs →
-                </a>
-            </div>
+                    <div class="hero-cta" style="margin-bottom: 32px;">
+                        <a href="#pricing" class="btn btn-primary btn-lg"
+                            style="box-shadow: 0 0 20px rgba(94, 45, 226, 0.4);">
+                            Download Free <i class="fa-solid fa-download" style="margin-left:8px;"></i>
+                        </a>
+                        <a href="docs/index.html" class="btn btn-ghost btn-lg">
+                            View Doc <i class="fa-solid fa-arrow-right" style="margin-left:8px; font-size: 0.8rem;"></i>
+                        </a>
+                    </div>
 
-            <div class="hero-stats">
-                <div>
-                    <div class="hero-stat-num">12<span>+</span></div>
-                    <div class="hero-stat-label">Built-in Modules</div>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div>
-                    <div class="hero-stat-num">630<span>+</span></div>
-                    <div class="hero-stat-label">Active Users</div>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div>
-                    <div class="hero-stat-num">1<span> plugin</span></div>
-                    <div class="hero-stat-label">Replaces 10+</div>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div>
-                    <div class="hero-stat-num">0<span> conflicts</span></div>
-                    <div class="hero-stat-label">Fully Modular</div>
-                </div>
-            </div>
-
-            <!-- Dashboard Mockup -->
-            <div class="hero-mockup">
-                <div class="mockup-bar">
-                    <div class="mockup-dot" style="background:#ff5f57;"></div>
-                    <div class="mockup-dot" style="background:#febc2e;"></div>
-                    <div class="mockup-dot" style="background:#28c840;"></div>
-                    <div class="mockup-url">yoursite.com/wp-admin → Ofast Toolkit</div>
-                </div>
-                <div class="mockup-body">
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-chart-simple"></i></span>
-                            <span class="mockup-badge badge-always">Always On</span>
-                        </div>
-                        <div class="mockup-card-title">Dashboard</div>
-                        <div class="mockup-card-desc">User counts, system stats at a glance</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-on">
-                                <div class="toggle-thumb"></div>
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <div class="trust-icon" style="color: var(--purple-light);"><i class="fa-solid fa-star"></i>
                             </div>
-                            <span class="toggle-label">Core Module</span>
+                            <div class="trust-text">
+                                <div style="font-size:0.75rem; color:var(--text-secondary);">Trusted by 200+ Users</div>
+                                <div class="trust-stars" style="font-size:0.7rem; color:#f59e0b; margin-top:3px;">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star-half-stroke"></i> <span
+                                        style="font-weight:600; color:var(--text-primary); margin-left:3px;">4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon" style="color: var(--text-primary);"><i
+                                    class="fa-brands fa-wordpress"></i></div>
+                            <div class="trust-text">
+                                <div style="font-size:0.75rem; color:var(--text-secondary);">Works with</div>
+                                <strong style="font-size:0.8rem; color:var(--text-primary);">WordPress</strong>
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon" style="color: var(--purple);"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="trust-text">
+                                <div style="font-size:0.75rem; color:var(--text-secondary);">Lightweight &</div>
+                                <strong style="font-size:0.8rem; color:var(--text-primary);">Blazing Fast</strong>
+                            </div>
                         </div>
                     </div>
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-envelope"></i></span>
-                            <span class="mockup-badge badge-on">Enabled</span>
-                        </div>
-                        <div class="mockup-card-title">Email Module</div>
-                        <div class="mockup-card-desc">Bulk emails with templates & scheduling</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-on">
-                                <div class="toggle-thumb"></div>
-                            </div>
-                            <span class="toggle-label">Enabled</span>
-                        </div>
-                    </div>
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
-                            <span class="mockup-badge badge-on">Enabled</span>
-                        </div>
-                        <div class="mockup-card-title">SMTP Config</div>
-                        <div class="mockup-card-desc">SendGrid, Mailgun, Zoho, Gmail</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-on">
-                                <div class="toggle-thumb"></div>
-                            </div>
-                            <span class="toggle-label">Enabled</span>
-                        </div>
-                    </div>
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-comment-dots"></i></span>
-                            <span class="mockup-badge badge-on">Enabled</span>
-                        </div>
-                        <div class="mockup-card-title">SMS Channel</div>
-                        <div class="mockup-card-desc">Twilio, Termii, Africa's Talking</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-on">
-                                <div class="toggle-thumb"></div>
-                            </div>
-                            <span class="toggle-label">Enabled</span>
-                        </div>
-                    </div>
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-shield-halved"></i></span>
-                            <span class="mockup-badge badge-on">Enabled</span>
-                        </div>
-                        <div class="mockup-card-title">Spam Protection</div>
-                        <div class="mockup-card-desc">Cloudflare Turnstile & reCAPTCHA</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-on">
-                                <div class="toggle-thumb"></div>
-                            </div>
-                            <span class="toggle-label">Enabled</span>
-                        </div>
-                    </div>
-                    <div class="mockup-card">
-                        <div class="mockup-card-head">
-                            <span class="mockup-card-icon"><i class="fa-solid fa-file-signature"></i></span>
-                            <span class="mockup-badge badge-off">Disabled</span>
-                        </div>
-                        <div class="mockup-card-title">Contact Forms</div>
-                        <div class="mockup-card-desc">Custom forms with submission storage</div>
-                        <div class="mockup-toggle">
-                            <div class="toggle-track toggle-off">
-                                <div class="toggle-thumb"></div>
-                            </div>
-                            <span class="toggle-label">Disabled</span>
-                        </div>
+                </div>
+
+                <div class="hero-right reveal">
+                    <div class="hero-image-wrap">
+                        <img src="highlight/img/hero_image.png" alt="Ofast Toolkit Dashboard Interface">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- =============================================
+
+        </section>
+
+        <!-- =============================================
+         MARQUEE
+    ============================================= -->
+        <section class="marquee-section">
+            <div class="mq-shadow"></div>
+            <div class="mq">
+                <div class="mq-track">
+                    <span class="mq-item">12+ BUILT-IN MODULES</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">1 PLUGIN REPLACES 10+</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">0 CONFLICTS FULLY MODULAR</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">MANAGE PLUGINS</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SITE PUBLISHING</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SECURE LOGIN</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SMTP SETUP</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">12+ BUILT-IN MODULES</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">1 PLUGIN REPLACES 10+</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">0 CONFLICTS FULLY MODULAR</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">MANAGE PLUGINS</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SITE PUBLISHING</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SECURE LOGIN</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SMTP SETUP</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">12+ BUILT-IN MODULES</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">1 PLUGIN REPLACES 10+</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">0 CONFLICTS FULLY MODULAR</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">MANAGE PLUGINS</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SITE PUBLISHING</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SECURE LOGIN</span><span class="mq-sep">✦</span>
+                    <span class="mq-item">SMTP SETUP</span><span class="mq-sep">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+         VIDEO SHOWCASE
+    ============================================= -->
+        <section id="video-sec" class="video-section" style="position: relative; overflow: hidden; z-index: 1;">
+            <canvas id="particleCanvas"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+            <div class="section-inner" style="padding: 40px 24px 0; position: relative; z-index: 2;">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">See it in action</div>
+                    <h2 class="section-title">Everything your site needs.<br><span class="highlight">Nothing it
+                            doesn't.</span></h2>
+                </div>
+                <div class="vid-outer reveal" style="margin-top: 40px;">
+                    <div class="vid-box" id="vidBox">
+                        <video id="demoVid" preload="none" poster="assets/img/video-poster.jpg" playsinline autoplay
+                            muted loop>
+                            <source src="highlight/video_1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
          PROBLEM VS SOLUTION
     ============================================= -->
-    <section class="problem-section">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">The Problem</div>
-                <h2 class="section-title">Too many plugins. Too much chaos.</h2>
-                <p class="section-sub">The average WordPress admin installs a different plugin for every small task —
-                    and pays the price in conflicts, slowdowns, and confusion.</p>
-            </div>
+        <section class="problem-section">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">The Problem</div>
+                    <h2 class="section-title">Too many plugins. Too much chaos.</h2>
+                    <!-- <p class="section-sub">Piecing together dozens of single-purpose plugins creates a fragile
+                        ecosystem. You inevitably pay the price in sluggish site performance, security vulnerabilities,
+                        and constant conflicts.</p> -->
+                </div>
 
-            <div class="problem-grid">
-                <div class="problem-list reveal">
-                    <div class="problem-item">
-                        <span class="problem-icon"><i class="fa-solid fa-xmark"></i></span>
-                        <div>
-                            <h4>Plugin conflicts everywhere</h4>
-                            <p>5 plugins doing 5 jobs but fighting each other constantly.</p>
+                <div class="problem-grid">
+                    <div class="problem-list reveal">
+                        <div class="grid-badge badge-red">
+                            <i class="fa-regular fa-face-frown"></i> Without Ofast Toolkit
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><i class="fa-solid fa-xmark"></i></span>
+                            <div>
+                                <h4>Plugin conflicts everywhere</h4>
+                                <p>5 plugins doing 5 jobs but fighting each other constantly.</p>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><i class="fa-solid fa-gauge-simple"></i></span>
+                            <div>
+                                <h4>Slower site performance</h4>
+                                <p>Every extra plugin adds weight — scripts, styles, database queries.</p>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+                            <div>
+                                <h4>Paying for too many tools</h4>
+                                <p>Multiple premium plugins adding up to more than they're worth.</p>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><i class="fa-solid fa-face-dizzy"></i></span>
+                            <div>
+                                <h4>Scattered settings everywhere</h4>
+                                <p>No single control panel. Settings spread across 10 different menus.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="problem-item">
-                        <span class="problem-icon"><i class="fa-solid fa-gauge-simple"></i></span>
-                        <div>
-                            <h4>Slower site performance</h4>
-                            <p>Every extra plugin adds weight — scripts, styles, database queries.</p>
+
+                    <div class="solution-list reveal">
+                        <div class="grid-badge badge-green">
+                            <i class="fa-regular fa-face-smile"></i> With Ofast Toolkit
                         </div>
-                    </div>
-                    <div class="problem-item">
-                        <span class="problem-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
-                        <div>
-                            <h4>Paying for too many tools</h4>
-                            <p>Multiple premium plugins adding up to more than they're worth.</p>
+                        <div class="solution-item">
+                            <span class="problem-icon"><i class="fa-solid fa-check"></i></span>
+                            <div>
+                                <h4>One plugin, zero conflicts</h4>
+                                <p>Everything built to work together. Tested, stable, reliable.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="problem-item">
-                        <span class="problem-icon"><i class="fa-solid fa-face-dizzy"></i></span>
-                        <div>
-                            <h4>Scattered settings everywhere</h4>
-                            <p>No single control panel. Settings spread across 10 different menus.</p>
+                        <div class="solution-item">
+                            <span class="problem-icon"><i class="fa-solid fa-bolt"></i></span>
+                            <div>
+                                <h4>Lightweight modular architecture</h4>
+                                <p>Enable only what you need. Disable the rest. No bloat.</p>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="problem-icon"><i class="fa-solid fa-coins"></i></span>
+                            <div>
+                                <h4>One fair price</h4>
+                                <p>Free tier covers the essentials. Pro at $39 covers everything.</p>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="problem-icon"><i class="fa-solid fa-bullseye"></i></span>
+                            <div>
+                                <h4>One clean control center</h4>
+                                <p>All your tools, all your settings, all in one dashboard.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="solution-list reveal">
-                    <div class="solution-item">
-                        <span class="problem-icon"><i class="fa-solid fa-check"></i></span>
-                        <div>
-                            <h4>One plugin, zero conflicts</h4>
-                            <p>Everything built to work together. Tested, stable, reliable.</p>
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <span class="problem-icon"><i class="fa-solid fa-bolt"></i></span>
-                        <div>
-                            <h4>Lightweight modular architecture</h4>
-                            <p>Enable only what you need. Disable the rest. No bloat.</p>
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <span class="problem-icon"><i class="fa-solid fa-coins"></i></span>
-                        <div>
-                            <h4>One fair price</h4>
-                            <p>Free tier covers the essentials. Pro at $39 covers everything.</p>
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <span class="problem-icon"><i class="fa-solid fa-bullseye"></i></span>
-                        <div>
-                            <h4>One clean control center</h4>
-                            <p>All your tools, all your settings, all in one dashboard.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =============================================
+        <!-- =============================================
          MODULES
     ============================================= -->
-    <section id="modules">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">12 Modules</div>
-                <h2 class="section-title">Everything your WordPress site needs.</h2>
-                <p class="section-sub">Enable what you need. Disable what you don't. Every module is independent — no
-                    dead weight.</p>
-            </div>
+        <section id="modules">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">12 Modules</div>
+                    <h2 class="section-title">Everything your WordPress site needs.</h2>
+                    <!-- <p class="section-sub">Enable what you need. Disable what you don't. Every module is independent —
+                        no
+                        dead weight.</p> -->
+                </div>
 
-            <div class="modules-grid">
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-chart-simple"></i></div>
-                    <div class="module-card-name">Dashboard</div>
-                    <div class="module-card-desc">User counts by role, recent activity, and system stats at a glance.
+                <div class="modules-grid">
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-chart-simple"></i></div>
+                        <div class="module-card-name">Dashboard</div>
+                        <div class="module-card-desc">User counts by role, recent activity, and system stats at a
+                            glance.
+                        </div>
+                        <span class="module-card-tag tag-free">Free · Always On</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="module-card-name">Email Module</div>
+                        <div class="module-card-desc">Send personalized bulk emails by role, manage drafts, view
+                            history,
+                            and design templates.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <div class="module-card-name">SMTP Configuration</div>
+                        <div class="module-card-desc">Configure SendGrid, Mailgun, Zoho, or Gmail for reliable email
+                            delivery.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-comment-dots"></i></div>
+                        <div class="module-card-name">SMS Channel</div>
+                        <div class="module-card-desc">Multi-provider SMS via Twilio, Africa's Talking, Termii, and
+                            SmartSMS
+                            Solutions.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="module-card-name">Spam Protection</div>
+                        <div class="module-card-desc">Cloudflare Turnstile and Google reCAPTCHA v2/v3 to block bots and
+                            protect forms.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-palette"></i></div>
+                        <div class="module-card-name">Admin Studio</div>
+                        <div class="module-card-desc">Customize user roles, the menu editor, admin URL, and backend
+                            branding.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-image"></i></div>
+                        <div class="module-card-name">Login Redesign</div>
+                        <div class="module-card-desc">Fully brand the WordPress login page with your logo, colors, and
+                            identity.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-code"></i></div>
+                        <div class="module-card-name">Code Snippets</div>
+                        <div class="module-card-desc">Add and manage custom PHP snippets with visual toggle switches —
+                            safer
+                            than editing functions.php.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-arrow-turn-right"></i></div>
+                        <div class="module-card-name">Redirects Manager</div>
+                        <div class="module-card-desc">301/302/307 redirects with import/export and usage tracking.
+                            Essential
+                            for SEO.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="module-card-name">Contact Forms</div>
+                        <div class="module-card-desc">Custom contact form builder with submission storage and admin
+                            review
+                            panel.</div>
+                        <span class="module-card-tag tag-free">Free</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-lock"></i></div>
+                        <div class="module-card-name">Social Login</div>
+                        <div class="module-card-desc">Let users log in with Google and Facebook accounts via OAuth.
+                        </div>
+                        <span class="module-card-tag tag-pro">Pro</span>
+                    </a>
+                    <a href="docs/index.html" target="_blank" class="module-card reveal">
+                        <div class="module-card-emoji"><i class="fa-solid fa-palette"></i></div>
+                        <div class="module-card-name">White Label</div>
+                        <div class="module-card-desc">Designer branding, footer text, plugin update control, page
+                            protection, and admin URL security.</div>
+                        <span class="module-card-tag tag-pro">Pro</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+         WHO IT'S FOR
+    ============================================= -->
+        <section class="why-section">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">Who It's For</div>
+                    <h2 class="section-title">Built for people who take their WordPress seriously.</h2>
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card reveal">
+                        <div class="why-card-num">01</div>
+                        <h3>Website Owners</h3>
+                        <p>Running a marketplace, membership site, LMS, or any websites? Ofast Toolkit gives you the
+                            backend
+                            control you need without the plugin chaos.</p>
                     </div>
-                    <span class="module-card-tag tag-free">Free · Always On</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="module-card-name">Email Module</div>
-                    <div class="module-card-desc">Send personalized bulk emails by role, manage drafts, view history,
-                        and design templates.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-envelope-open-text"></i></div>
-                    <div class="module-card-name">SMTP Configuration</div>
-                    <div class="module-card-desc">Configure SendGrid, Mailgun, Zoho, or Gmail for reliable email
-                        delivery.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-comment-dots"></i></div>
-                    <div class="module-card-name">SMS Channel</div>
-                    <div class="module-card-desc">Multi-provider SMS via Twilio, Africa's Talking, Termii, and SmartSMS
-                        Solutions.</div>
-                    <span class="module-card-tag tag-pro">Pro</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="module-card-name">Spam Protection</div>
-                    <div class="module-card-desc">Cloudflare Turnstile and Google reCAPTCHA v2/v3 to block bots and
-                        protect forms.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-palette"></i></div>
-                    <div class="module-card-name">Admin Studio</div>
-                    <div class="module-card-desc">Customize user roles, the menu editor, admin URL, and backend
-                        branding.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-image"></i></div>
-                    <div class="module-card-name">Login Redesign</div>
-                    <div class="module-card-desc">Fully brand the WordPress login page with your logo, colors, and
-                        identity.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-code"></i></div>
-                    <div class="module-card-name">Code Snippets</div>
-                    <div class="module-card-desc">Add and manage custom PHP snippets with visual toggle switches — safer
-                        than editing functions.php.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-arrow-turn-right"></i></div>
-                    <div class="module-card-name">Redirects Manager</div>
-                    <div class="module-card-desc">301/302/307 redirects with import/export and usage tracking. Essential
-                        for SEO.</div>
-                    <span class="module-card-tag tag-free">Free</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-file-signature"></i></div>
-                    <div class="module-card-name">Contact Forms</div>
-                    <div class="module-card-desc">Custom contact form builder with submission storage and admin review
-                        panel.</div>
-                    <span class="module-card-tag tag-pro">Pro</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-lock"></i></div>
-                    <div class="module-card-name">Social Login</div>
-                    <div class="module-card-desc">Let users log in with Google and Facebook accounts via OAuth.</div>
-                    <span class="module-card-tag tag-pro">Pro</span>
-                </div>
-                <div class="module-card reveal">
-                    <div class="module-card-emoji"><i class="fa-solid fa-bug"></i></div>
-                    <div class="module-card-name">Debug Indicator</div>
-                    <div class="module-card-desc">Warns you if WP_DEBUG is active on a production site — a critical
-                        security alert.</div>
-                    <span class="module-card-tag tag-free">Free</span>
+                    <div class="why-card reveal">
+                        <div class="why-card-num">02</div>
+                        <h3>Learners</h3>
+                        <p>Perfect for students and DIY users who want to learn and build faster with safe, ready-to-use
+                            tools instead of writing complex PHP.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-card-num">03</div>
+                        <h3>WordPress Developers</h3>
+                        <p>Building sites for clients? Install Ofast Toolkit instead of 10 plugins. One setup, one
+                            license,
+                            everything covered.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =============================================
+        <!-- =============================================
          WHY OFAST TOOLKIT
     ============================================= -->
-    <section class="why-section">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">Why Ofast Toolkit</div>
-                <h2 class="section-title">Built different. On purpose.</h2>
-            </div>
+        <section id="features" style="background-color: #F6F3FD; padding: 20px 0 60px 0;">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">Why Ofast Toolkit</div>
+                    <h2 class="section-title">Built different. On purpose.</h2>
+                </div>
 
-            <div class="why-grid">
-                <div class="why-card reveal">
-                    <div class="why-card-num">01</div>
-                    <h3>Truly modular</h3>
-                    <p>Each module is independent. Toggle on what you need, off what you don't. No bloat, no wasted
-                        resources loading features you never use.</p>
-                </div>
-                <div class="why-card reveal">
-                    <div class="why-card-num">02</div>
-                    <h3>Security-first</h3>
-                    <p>AES-256 password encryption, header injection prevention, CSRF protection, rate limiting, and
-                        ownership verification built into every operation.</p>
-                </div>
-                <div class="why-card reveal">
-                    <div class="why-card-num">03</div>
-                    <h3>Built by a real developer</h3>
-                    <p>Not a corporate product. Built by a solo WordPress developer who uses it every day on a live
-                        platform with 630+ users. Real problems, real solutions.</p>
+                <div class="feature-zigzag">
+                    <!-- Feature 1 -->
+                    <div class="feature-row reveal">
+                        <div class="feature-text">
+                            <div class="feature-num">// 01</div>
+                            <h3>Truly <span class="highlight-purple">modular</span></h3>
+                            <p>Each module is independent. Toggle on what you need, off what you don't. No bloat, no
+                                wasted
+                                resources loading features you never use.</p>
+                            <ul class="feature-list">
+                                <li><i class="fa-solid fa-check"></i> Modules don't interfere with each other</li>
+                                <li><i class="fa-solid fa-check"></i> Enable only what your site actually needs</li>
+                                <li><i class="fa-solid fa-check"></i> Settings saved independently per module</li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <img src="assets/img/modular_dashboard.png" class="grow-image" alt="Modular Dashboard UI"
+                                style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); display: block;">
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-row reverse reveal">
+                        <div class="feature-text">
+                            <div class="feature-num">// 02</div>
+                            <h3>Sec<span class="highlight-purple">uri</span>ty-first</h3>
+                            <p>AES-256 password encryption, header injection prevention, CSRF protection, rate limiting,
+                                and
+                                ownership verification built into every operation.</p>
+                            <ul class="feature-list">
+                                <li><i class="fa-solid fa-check"></i> AES-256 encryption on sensitive data</li>
+                                <li><i class="fa-solid fa-check"></i> CSRF protection on every form action</li>
+                                <li><i class="fa-solid fa-check"></i> Rate limiting and brute-force prevention</li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <img src="assets/img/security_shield.png" class="grow-image" alt="Security Shield UI"
+                                style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); display: block;">
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-row reveal">
+                        <div class="feature-text">
+                            <div class="feature-num">// 03</div>
+                            <h3>Battle-tested in the <span class="highlight-purple">trenches</span></h3>
+                            <p>This isn't just theory. Ofast Toolkit was forged out of necessity to manage a rapidly
+                                growing, live platform. It's built to solve the exact headaches you face every day.</p>
+                            <ul class="feature-list">
+                                <li><i class="fa-solid fa-check"></i> Proven stable on a live 630+ user platform</li>
+                                <li><i class="fa-solid fa-check"></i> Actively maintained by a developer who relies on
+                                    it
+                                </li>
+                                <li><i class="fa-solid fa-check"></i> Designed to eliminate daily administrative
+                                    friction
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="feature-visual">
+                            <img src="assets/img/performance_graph.png" class="grow-image" alt="Performance Graph UI"
+                                style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); display: block;">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =============================================
-         WHO IS IT FOR
-    ============================================= -->
-    <section>
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">Who It's For</div>
-                <h2 class="section-title">Built for people who take their WordPress seriously.</h2>
-            </div>
-
-            <div class="for-grid">
-                <div class="for-card reveal">
-                    <div class="for-card-emoji"><i class="fa-solid fa-building"></i></div>
-                    <h3>Platform Owners</h3>
-                    <p>Running a marketplace, membership site, or LMS? Ofast Toolkit gives you the backend control you
-                        need without the plugin chaos.</p>
-                </div>
-                <div class="for-card reveal">
-                    <div class="for-card-emoji"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h3>LMS & Marketplace Admins</h3>
-                    <p>Managing instructors, affiliates, vendors, and students? Keep everything under control from one
-                        unified panel.</p>
-                </div>
-                <div class="for-card reveal">
-                    <div class="for-card-emoji"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h3>WordPress Developers</h3>
-                    <p>Building sites for clients? Install Ofast Toolkit instead of 10 plugins. One setup, one license,
-                        everything covered.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =============================================
+        <!-- =============================================
          PRICING
     ============================================= -->
-    <section id="pricing" style="background: var(--dark-2); border-top: 1px solid var(--border-dark);">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">Pricing</div>
-                <h2 class="section-title">Simple, honest pricing.</h2>
-                <p class="section-sub">Start free. Upgrade when you're ready. No subscriptions, no tricks — just a
-                    one-time payment for the Pro version.</p>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Free -->
-                <div class="pricing-card reveal">
-                    <div class="pricing-plan">Free</div>
-                    <div class="pricing-price"><sup>$</sup>0</div>
-                    <div class="pricing-price-note">Forever free. No credit card.</div>
-
-                    <div class="pricing-divider"></div>
-
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Dashboard Module
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Email Module
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            SMTP Configuration
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Spam Protection
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Admin Studio
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Login Redesign
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Code Snippets Manager
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Redirects Manager
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Debug Indicator
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-cross">✗</div>
-                            SMS Channel
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-cross">✗</div>
-                            Social Login
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-cross">✗</div>
-                            Contact Forms
-                        </div>
-                    </div>
-
-                    <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">
-                        <i class="fa-solid fa-download"></i> Download Free
-                    </a>
+        <section id="pricing" style="background: var(--dark-2); border-top: 1px solid var(--border-dark);">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">Pricing</div>
+                    <h2 class="section-title">Simple, honest pricing.</h2>
+                    <p class="section-sub">Start free. Upgrade when you're ready. No subscriptions, no tricks — just a
+                        one-time payment for the Pro version.</p>
                 </div>
 
-                <!-- Pro -->
-                <div class="pricing-card pro reveal">
-                    <div class="pricing-popular">Most Popular</div>
-                    <div class="pricing-plan" style="color: var(--gold);">Pro</div>
-                    <div class="pricing-price"><sup>$</sup>39</div>
-                    <div class="pricing-price-note">One-time payment. Lifetime access.</div>
+                <div class="pricing-grid">
+                    <!-- Free -->
+                    <div class="pricing-card reveal">
+                        <div class="pricing-plan">Free</div>
+                        <div class="pricing-price"><sup>$</sup>0</div>
+                        <div class="pricing-price-note">Forever free. No credit card.</div>
 
-                    <div class="pricing-divider"></div>
+                        <div class="pricing-divider"></div>
 
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Everything in Free
+                        <div class="pricing-features">
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Dashboard Module
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Email Module
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                SMTP Configuration
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Spam Protection
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Admin Studio
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Login Redesign
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Code Snippets Manager
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Redirects Manager
+                            </div>
+
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                SMS Channel
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Contact Forms
+                            </div>
                         </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            SMS Channel (Twilio, Termii, Africa's Talking)
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Social Login (Google & Facebook OAuth)
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Contact Forms with submission storage
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            SMTP Fallback Server
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Email Health Reports
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Advanced Rate Limiting
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            Priority support
-                        </div>
-                        <div class="pricing-feature">
-                            <div class="pricing-feature-icon icon-check">✓</div>
-                            All future Pro modules
-                        </div>
+
+                        <a href="#" class="btn btn-ghost" style="width:100%; justify-content:center;">
+                            <i class="fa-solid fa-download"></i> Download Free
+                        </a>
                     </div>
 
-                    <a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/" target="_blank"
-                        class="btn btn-gold" style="width:100%; justify-content:center;">
+                    <!-- Pro -->
+                    <div class="pricing-card pro reveal">
+                        <div class="pricing-popular">Most Popular</div>
+                        <div class="pricing-plan" style="color: var(--purple);">Pro</div>
+                        <div class="pricing-price"><sup>$</sup>44</div>
+                        <div class="pricing-price-note">One-time payment. Lifetime access.</div>
+
+                        <div class="pricing-divider"></div>
+
+                        <div class="pricing-features">
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Everything in Free
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Social Login (Google & Facebook OAuth)
+                            </div>
+
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                SMTP Fallback Server
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Email Health Reports
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Advanced Rate Limiting
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Priority support
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                All future Pro modules
+                            </div>
+                            <div class="pricing-feature">
+                                <div class="pricing-feature-icon icon-check">✓</div>
+                                Email Marketing
+                            </div>
+                        </div>
+
+                        <a onclick="window.open('https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/', '_blank')"
+                            class="btn btn-primary"
+                            style="cursor: pointer; width:100%; justify-content:center; box-shadow: 0 8px 24px rgba(94, 45, 226, 0.4);">
+                            Get Ofast Toolkit Pro →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+         FAQ SECTION
+    ============================================= -->
+        <section id="faq" style="background: var(--dark-1);">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">FAQ</div>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-list reveal" style="max-width: 800px; margin: 40px auto 0;">
+                    <div class="faq-item">
+                        <div class="faq-q">Will the Ofast Toolkit slow down my website?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>Absolutely not. The Ofast Toolkit is built on a strictly modular architecture. If you
+                                don't
+                                need a specific feature (like Forms), simply toggle it off. Disabled modules load zero
+                                assets and execute zero background code, ensuring your site stays lightning-fast.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Do I need to activate all the modules?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>No. Every module in Ofast Toolkit can be independently enabled or disabled from the
+                                Toolkit
+                                dashboard. Only activate what you need; inactive modules add zero overhead to your site.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Is this compatible with my theme?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>Yes. Ofast Toolkit operates entirely within the WordPress admin and backend. It does not
+                                interfere with your theme or frontend design.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">What happens if my primary SMTP server goes down?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>If you are an Ofast Pro user, our intelligent Fallback Host feature automatically detects
+                                the
+                                failure and instantly routes the email through your configured secondary provider,
+                                ensuring
+                                uninterrupted delivery.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">How does the licensing work?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>Upon purchase, your license key is automatically generated and securely stored in your
+                                Ofast
+                                account. You can easily view it in your "My Downloads" dashboard. Enter this key into
+                                the
+                                plugin settings to unlock Pro features and enable seamless automatic updates.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Do you offer support?<span class="faq-icon"><i
+                                    class="fa-solid fa-plus"></i></span></div>
+                        <div class="faq-a">
+                            <p>Yes. Free users can access community support. Pro users receive priority email support.
+                                Reach
+                                us at support@ofastshop.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center reveal" style="margin-top: 48px;">
+                    <a onclick="window.open('https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/', '_blank')"
+                        class="btn btn-primary btn-lg" style="cursor: pointer; box-shadow: var(--shadow-glow);">
                         Get Ofast Toolkit Pro →
                     </a>
-
-                    <div class="pricing-naira">Also available at ₦50,000 via ofastshop.com</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =============================================
+        <!-- =============================================
          CTA BAND
     ============================================= -->
-    <section class="cta-band">
-        <div class="section-inner">
-            <div class="text-center reveal">
-                <div class="section-eyebrow">Get Started Today</div>
-                <h2 class="section-title">Your WordPress backend deserves better.</h2>
-                <p class="section-sub">Download the free version and see the difference immediately. Upgrade to Pro when
-                    you're ready.</p>
+        <section class="cta-band">
+            <div class="section-inner">
+                <div class="text-center reveal">
+                    <div class="section-eyebrow">Get Started Today</div>
+                    <h2 class="section-title">Your WordPress backend deserves better.</h2>
+                    <p class="section-sub">Download the free version and see the difference immediately. Upgrade to Pro
+                        when
+                        you're ready.</p>
+                </div>
+                <div class="cta-band-btns reveal">
+                    <a href="#" class="btn btn-primary btn-lg"><i class="fa-solid fa-download"></i> Download Free</a>
+                    <a onclick="window.open('https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/', '_blank')"
+                        class="btn btn-gold btn-lg" style="cursor: pointer;">Get Pro — $44</a>
+                    <a href="docs/index.html" class="btn btn-ghost btn-lg">Read the Docs</a>
+                </div>
             </div>
-            <div class="cta-band-btns reveal">
-                <a href="#" class="btn btn-primary btn-lg"><i class="fa-solid fa-download"></i> Download Free</a>
-                <a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/" target="_blank"
-                    class="btn btn-gold btn-lg">Get Pro — $39</a>
-                <a href="docs/index.html" class="btn btn-ghost btn-lg">Read the Docs</a>
-            </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <!-- =============================================
          FOOTER
     ============================================= -->
-    <footer>
+    <footer id="site-footer">
+        <div class="footer-huge-text">Ofastshop</div>
         <div class="footer-inner">
             <div class="footer-top">
                 <div>
@@ -613,11 +724,14 @@
                         plugin. Total control.
                     </p>
                     <div class="footer-socials">
-                        <a href="https://ofastshop.com" class="footer-social" title="Website"><i
-                                class="fa-solid fa-globe"></i></a>
-                        <a href="#" class="footer-social" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="footer-social" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="footer-social" title="WhatsApp"><i class="fa-solid fa-comment-dots"></i></a>
+                        <a href="https://ofastshop.com" target="_blank" class="footer-social" title="Website"><i
+                                class="fa-solid fa-store"></i></a>
+                        <a href="https://www.linkedin.com/posts/ofastshopdigitals" target="_blank" class="footer-social"
+                            title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://x.com/ofast_shop" target="_blank" class="footer-social" title="X / Twitter"><i
+                                class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.youtube.com/@OfastshopDigitals" target="_blank" class="footer-social"
+                            title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 
@@ -627,9 +741,10 @@
                         <li><a href="#modules">All Modules</a></li>
                         <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#">Download Free</a></li>
+                        <li><a onclick="window.open('https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/', '_blank')"
+                                style="cursor: pointer;">Get Pro</a></li>
                         <li><a href="https://ofastshop.com/user/digital/wordpress-plugin/ofast-tooltik-pro/"
-                                target="_blank">Get Pro</a></li>
-                        <li><a href="#">Changelog</a></li>
+                                target="_blank">Changelog</a></li>
                     </ul>
                 </div>
 
@@ -640,7 +755,7 @@
                         <li><a href="docs/getting-started.html">Getting Started</a></li>
                         <li><a href="docs/smtp.html">SMTP Setup Guide</a></li>
                         <li><a href="docs/email.html">Email Module</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><a href="mailto:support@ofastshop.com">Support</a></li>
                     </ul>
                 </div>
 
@@ -650,15 +765,15 @@
                         <li><a href="https://ofastshop.com" target="_blank">Ofastshop.com</a></li>
                         <li><a href="#">Bofast World</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">support@ofastshop.com</a></li>
+                        <li><a href="https://ofastshop.com/contact" target="_blank">Contact</a></li>
+                        <li><a href="mailto:support@ofastshop.com">support@ofastshop.com</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-copy">
-                    © 2025 <a href="https://ofastshop.com" target="_blank">Ofastshop Digitals</a> · || All rights
+                    © 2026 <a href="https://ofastshop.com" target="_blank">Ofastshop Digitals</a> · || All rights
                     reserved.
                 </div>
                 <div class="footer-bottom-links">
@@ -692,11 +807,131 @@
         const nav = document.getElementById('mainNav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
-                nav.style.background = 'rgba(10,10,15,0.97)';
+                nav.classList.add('scrolled');
             } else {
-                nav.style.background = 'rgba(10,10,15,0.85)';
+                nav.classList.remove('scrolled');
             }
         });
+
+        // Typewriter Effect
+        const words = ["Workflow.", "Dashboard.", "Admin.", "Management.", "Experience."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const typedTextSpan = document.getElementById("typewriter-text");
+            if (!typedTextSpan) return;
+
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
+            typedTextSpan.textContent = currentWord.substring(0, charIndex);
+
+            let typeSpeed = isDeleting ? 60 : 150;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 3000; // Pause at the end of the word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex++;
+                if (wordIndex >= words.length) wordIndex = 0;
+                typeSpeed = 600; // Pause before typing the next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(type, 1000);
+        });
+
+        // Video (now autoplaying, overlay removed)
+        const demoVid = document.getElementById('demoVid');
+        if (demoVid) {
+            demoVid.play().catch(e => console.log('Autoplay blocked:', e));
+        }
+
+        // Falling Particles Effect
+        const canvas = document.getElementById('particleCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2.5 + 0.5;
+                    this.speedY = Math.random() * 1.2 + 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.y += this.speedY;
+                    if (this.y > canvas.height) {
+                        this.y = 0 - this.size;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(94, 45, 226, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        }
+
+        // FAQ
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+        // Sticky Reveal Footer logic
+        function updateFooterReveal() {
+            const footer = document.getElementById('site-footer');
+            const wrapper = document.querySelector('.site-main-wrapper');
+            if (footer && wrapper) {
+                wrapper.style.marginBottom = footer.offsetHeight + 'px';
+            }
+        }
+        window.addEventListener('resize', updateFooterReveal);
+        window.addEventListener('load', updateFooterReveal);
+        document.addEventListener('DOMContentLoaded', updateFooterReveal);
+        // Initial call
+        setTimeout(updateFooterReveal, 100);
+
     </script>
 </body>
 

@@ -4,16 +4,16 @@
         :root {
             --primary:        #6366f1;
             --primary-dark:   #4f46e5;
-            --primary-light:  rgba(99,102,241,0.12);
+            --primary-light:  #eef2ff;
             --gold:           #ffcc00;
             --gold-dark:      #e6b800;
-            --bg:             #0a0a0f;
-            --surface:        #111118;
-            --border:         rgba(255,255,255,0.08);
-            --border-light:   rgba(255,255,255,0.04);
-            --text:           #f1f5f9;
-            --text-muted:     #94a3b8;
-            --text-light:     #64748b;
+            --bg:             #ffffff;
+            --surface:        #ffffff;
+            --border:         #e2e8f0;
+            --border-light:   #f1f5f9;
+            --text:           #1e293b;
+            --text-muted:     #64748b;
+            --text-light:     #94a3b8;
             --sidebar-width:  270px;
             --toc-width:      220px;
             --header-height:  62px;
