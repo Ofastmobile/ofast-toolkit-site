@@ -1,6 +1,6 @@
 const OFAST_CONFIG = {
     // Update this single line to change the download link globally
-    toolkitDownloadUrl: "https://dl.ofastshop.com/ofastshop/web/2026/06/02125029/ofast-toolkit.zip"
+    toolkitDownloadUrl: "https://dl.ofastshop.com/ofastshop/web/2026/06/04160156/ofast-toolkit-.zip"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
